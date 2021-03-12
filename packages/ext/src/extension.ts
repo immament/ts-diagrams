@@ -24,14 +24,23 @@ class DiagramPanel {
   constructor(extensionUri: vscode.Uri) {
     this.basePath = vscode.Uri.joinPath(extensionUri, 'dist', 'web');
     this.panel = this.createWebview();
-    this.panel.webview.html = this.getWebviewContent();
+    this.panel.webview.html = this.tryGetWebviewContent();
     this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
+  }
+
+  private tryGetWebviewContent() {
+    try {
+      return this.getWebviewContent();
+    } catch (error) {
+      console.error('getWebviewContent', error);
+      throw error;
+    }
   }
 
   private createWebview() {
     return vscode.window.createWebviewPanel(
       'diagram',
-      'Diagram',
+      'Diagram 2',
       vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -97,6 +106,8 @@ class DiagramPanel {
       this.basePath,
       'asset-manifest.json'
     );
+
+    // TODO: throw error in webpack
     const manifest = require(manifestPath.path);
     const mainScript: string = manifest.files['main.js'];
     const mainStyle: string = manifest.files['main.css'];
