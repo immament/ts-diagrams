@@ -1,29 +1,53 @@
-import {DiagramSkeleton, SkeletonElement} from './DiagramSkeleton';
+import {
+  DiagramSkeleton,
+  SkeletonElement,
+  SkeletonLink,
+} from './DiagramSkeleton';
 
-export interface DiagramContent<T> {
-  cells: T[];
+export interface DiagramContent<E, L> {
+  elements: E[];
+  links: L[];
 }
 
 export type DiagramElementCreator<T> = (element: SkeletonElement) => T;
+export type DiagramLinkCreator<L, E> = (
+  link: SkeletonLink,
+  elements: Map<string, E>
+) => L;
 
-export class DiagramFactory<T> {
-  constructor(
-    private typeMapper: Map<string, DiagramElementCreator<T>>,
-    private defualtCreator: DiagramElementCreator<T>
-  ) {}
+export interface Creators<E, L> {
+  element: Map<string, DiagramElementCreator<E>>;
+  defaultElement: DiagramElementCreator<E>;
+  link: Map<string, DiagramLinkCreator<L, E>>;
+  defaultLink: DiagramLinkCreator<L, E>;
+}
 
-  create(options: DiagramSkeleton): DiagramContent<T> {
+export class DiagramFactory<E, L> {
+  constructor(private creatorsMapper: Creators<E, L>) {}
+
+  create(options: DiagramSkeleton): DiagramContent<E, L> {
+    const idsToElements = new Map<string, E>();
+    const cells = options.elements.map(e => {
+      const element = this.createCell(e);
+      idsToElements.set(e.id, element);
+      return element;
+    });
     return {
-      cells: options.elements.map(e => this.createCell(e)),
+      elements: cells,
+      links: options.links.map(l => this.createLink(l, idsToElements)),
     };
   }
 
-  createCell(element: SkeletonElement) {
-    const creator = this.typeMapper.get(element.type);
-    if (creator) {
-      return creator(element);
-    }
+  private createCell(src: SkeletonElement) {
+    return (
+      this.creatorsMapper.element.get(src.type) ??
+      this.creatorsMapper.defaultElement
+    )(src);
+  }
 
-    return this.defualtCreator(element);
+  private createLink(link: SkeletonLink, idsToElements: Map<string, E>) {
+    return (
+      this.creatorsMapper.link.get(link.type) ?? this.creatorsMapper.defaultLink
+    )(link, idsToElements);
   }
 }

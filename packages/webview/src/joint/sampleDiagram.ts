@@ -1,7 +1,11 @@
 /* istanbul ignore file */
 
 import * as joint from 'jointjs';
-import {DiagramSkeleton, SkeletonElement} from '../diagram/DiagramSkeleton';
+import {
+  DiagramSkeleton,
+  SkeletonElement,
+  SkeletonLink,
+} from '../diagram/DiagramSkeleton';
 import {diagram} from './diagram';
 
 export function sampleDiagram(
@@ -17,21 +21,21 @@ export function sampleDiagram(
 
   function createSkeleton(): DiagramSkeleton {
     return {
-      elements: cteateMultiElements(),
+      elements: createElements(),
+      links: createLinks(),
     };
   }
 
-  function createRelations() {
+  function createLinks(): SkeletonLink[] {
     return [
-      // new uml.Generalization({
-      //   source: {id: items[0].id},
-      //   target: {id: items[1].id},
-      //   attrs: {'.link-tools': {display: 'none'}},
-      // }),
+      {fromId: '2', toId: '1', type: 'uml.Association'},
+      {fromId: '3', toId: '1', type: 'uml.Generalization'},
+      {fromId: '4', toId: '1', type: 'uml.Aggreagation'},
+      {fromId: '4', toId: '3', type: 'uml.Composition'},
     ];
   }
 
-  function cteateMultiElements() {
+  function createMultiElements() {
     const elements = [];
     for (let i = 0; i < 10; i++) {
       elements.push(...createElements());
@@ -42,6 +46,7 @@ export function sampleDiagram(
   function createElements(): SkeletonElement[] {
     return [
       {
+        id: '1',
         type: 'uml.Interface',
         name: 'Mammal2',
         properties: [
@@ -58,8 +63,8 @@ export function sampleDiagram(
           '- getAgeAsDays3(): Numeric',
         ],
       },
-
       {
+        id: '2',
         type: 'uml.Class',
         name: 'BloodGroup',
         properties: [
@@ -71,11 +76,13 @@ export function sampleDiagram(
         ],
       },
       {
+        id: '3',
         type: 'uml.Abstract',
         name: 'BloodGroup',
         methods: ['+ isCompatible(bG: String): Boolean'],
       },
       {
+        id: '4',
         type: 'uml.Unknown',
         name: 'Unknown',
         methods: ['+ isCompatible(bG: String): Boolean'],

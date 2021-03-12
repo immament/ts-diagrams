@@ -3,7 +3,7 @@ import * as joint from 'jointjs';
 import {debounce} from 'lodash';
 import {DiagramFactory} from '../diagram/DiagramFactory';
 import {DiagramSkeleton} from '../diagram/DiagramSkeleton';
-import {defualtJointCreator, jointCreatorsMapper} from './JointDiagramCreators';
+import {jointCreatorsMapper} from './JointDiagramCreators';
 import './uml';
 
 export function diagram(
@@ -27,13 +27,11 @@ export function diagram(
 
   function createDiagramContent() {
     if (options.skeleton) {
-      const factory = new DiagramFactory(
-        jointCreatorsMapper,
-        defualtJointCreator
-      );
-
+      const factory = new DiagramFactory(jointCreatorsMapper);
       const content = factory.create(options.skeleton);
-      register(content.cells);
+
+      register(content.elements);
+      register(content.links);
     }
   }
 
@@ -88,6 +86,32 @@ export function diagram(
       gridSize: 1,
       theme: 'dark',
       cellViewNamespace: joint.shapes,
+      defaultConnector: {name: 'rounded'},
+      defaultRouter: manhattan,
+      //defaultConnectionPoint: {name: 'bbox', args: {}},
+      //defaultAnchor: {name: 'left'},
+      //perpendicularLinks: false,
     });
   }
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const manhattan = function (
+  vertices: joint.dia.Point[],
+  opt?: joint.routers.ManhattanRouterArguments,
+  linkView?: joint.dia.LinkView
+) {
+  return joint.routers.manhattan(
+    vertices,
+    {
+      ...opt,
+      padding: {
+        left: 50,
+        right: 50,
+        top: 50,
+        bottom: 50,
+      },
+    },
+    linkView
+  );
+};

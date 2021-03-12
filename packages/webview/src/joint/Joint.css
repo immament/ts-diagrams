@@ -13,6 +13,11 @@
   overflow: auto;
 }
 
+.joint-theme-dark .joint-link path {
+  stroke: #ffcc12;
+  stroke-width: 1.5;
+}
+
 .joint-theme-dark {
   background-color: #282c34 !important;
 }

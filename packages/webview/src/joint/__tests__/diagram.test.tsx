@@ -1,4 +1,8 @@
-import {DiagramSkeleton, SkeletonElement} from '../../diagram/DiagramSkeleton';
+import {
+  DiagramSkeleton,
+  SkeletonElement,
+  SkeletonLink,
+} from '../../diagram/DiagramSkeleton';
 import {diagram} from '../diagram';
 
 describe('diagram', () => {
@@ -12,12 +16,18 @@ describe('diagram', () => {
 function createSkeleton(): DiagramSkeleton {
   return {
     elements: createElements(),
+    links: createLinks(),
   };
+}
+
+function createLinks(): SkeletonLink[] {
+  return [{fromId: '2', toId: '1', type: 'uml.Generalization'}];
 }
 
 function createElements(): SkeletonElement[] {
   return [
     {
+      id: '1',
       type: 'uml.Interface',
       name: 'Mammal2',
       properties: [
@@ -34,8 +44,8 @@ function createElements(): SkeletonElement[] {
         '- getAgeAsDays3(): Numeric',
       ],
     },
-
     {
+      id: '2',
       type: 'uml.Class',
       name: 'BloodGroup',
       properties: [
@@ -46,13 +56,14 @@ function createElements(): SkeletonElement[] {
         'dob5: Date',
       ],
     },
-
     {
+      id: '3',
       type: 'uml.Abstract',
       name: 'BloodGroup',
       methods: ['+ isCompatible(bG: String): Boolean'],
     },
     {
+      id: '4',
       type: 'Unknown',
       name: 'Unknown',
       methods: ['+ isCompatible(bG: String): Boolean'],
