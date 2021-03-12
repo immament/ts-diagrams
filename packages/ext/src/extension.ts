@@ -1,3 +1,4 @@
+import {readFileSync} from 'fs';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -40,7 +41,7 @@ class DiagramPanel {
   private createWebview() {
     return vscode.window.createWebviewPanel(
       'diagram',
-      'Diagram 2',
+      'Diagram',
       vscode.ViewColumn.One,
       {
         enableScripts: true,
@@ -75,15 +76,12 @@ class DiagramPanel {
 
 		<title>Diagram</title>
     <base href="${this.panel.webview.asWebviewUri(this.basePath)}/">
-	
 </head>
 <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    
+    <noscript>You need to enable JavaScript to run this app.</noscript>    
     <div id="root"></div>
-
 		<script  nonce="${nonce}" src="${scriptUri}"></script>
-		</body>
+</body>
 </html>`;
   }
 
@@ -107,11 +105,15 @@ class DiagramPanel {
       'asset-manifest.json'
     );
 
-    // TODO: throw error in webpack
-    const manifest = require(manifestPath.path);
+    const manifest = this.readJSON(manifestPath.path);
     const mainScript: string = manifest.files['main.js'];
     const mainStyle: string = manifest.files['main.css'];
     return {mainScript, mainStyle};
+  }
+
+  private readJSON(filePath: string) {
+    const jsonString = readFileSync(filePath, {encoding: 'utf8'});
+    return JSON.parse(jsonString);
   }
 }
 
