@@ -10,6 +10,7 @@
     "move": "cd packages && rm -rf ext/dist/web && mkdir -p ext/dist && mv webview/build ext/dist/web",
     "watch": "yarn workspace ext watch",
     "ext": "yarn workspace ext",
+    "extractor": "yarn workspace extractor",
     "web": "yarn workspace webview",
     "lint": "yarn workspaces run lint"
   },
