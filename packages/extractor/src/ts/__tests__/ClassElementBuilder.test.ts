@@ -2,9 +2,6 @@ import {
   createDiagram,
   createDiagramFromFiles,
   createDiagramWithLoadLibs,
-  getFirstAccessor,
-  getFirstMethod,
-  getFirstProperty,
 } from './utils';
 
 describe('ClassDiagram Classes', () => {
@@ -22,7 +19,7 @@ describe('ClassDiagram Classes', () => {
       m1() { return 'a'}
     }`);
 
-    const element = diagram.getElements()[0];
+    const element = diagram.getFirstClassElementOrThrow();
     expect(element.getMethods()).toHaveLength(1);
     expect(element.getProperties()).toHaveLength(1);
     expect(element.getAccessors()).toHaveLength(1);
@@ -34,7 +31,7 @@ describe('ClassDiagram Classes', () => {
         m1(param1: number, param2: string ): string { }
       }`);
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method).toMatchObject({
         name: 'm1',
         returnType: 'string',
@@ -52,7 +49,7 @@ describe('ClassDiagram Classes', () => {
       }
       class B {}`);
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.returnType).toEqual(
         'number | B | A | ({ a: string; b: B; } & { c: number; })'
       );
@@ -65,7 +62,7 @@ describe('ClassDiagram Classes', () => {
       }
       class B {}`);
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.parameters[0].type).toEqual(
         'number | B | A | ({ a: string; b: B; } & { c: number; })'
       );
@@ -77,14 +74,14 @@ describe('ClassDiagram Classes', () => {
         ['file.ts', 'export class B {}'],
       ]);
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.returnType).toEqual('B');
     });
 
     test('should return type be void', () => {
       const diagram = createDiagram('export class A {m1() { }}');
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.returnType).toEqual('void');
     });
 
@@ -93,14 +90,14 @@ describe('ClassDiagram Classes', () => {
         'export class A {m1():string[] {}}'
       );
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.returnType).toEqual('string[]');
     });
 
     test('should detected simple returned type from returened value', () => {
       const diagram = createDiagram('export class A {m1() { return 1; }}');
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.returnType).toEqual('number');
     });
 
@@ -109,7 +106,7 @@ describe('ClassDiagram Classes', () => {
         'export class A {m1(a: boolean) { return a ? new A() : 1 as number }}'
       );
 
-      const method = getFirstMethod(diagram);
+      const method = diagram.getFirstMethodOrThrow();
       expect(method.returnType).toEqual('number | A');
     });
 
@@ -121,7 +118,7 @@ describe('ClassDiagram Classes', () => {
         protected m4() {}
     }`);
 
-      const element = diagram.getElements()[0];
+      const element = diagram.getFirstClassElementOrThrow();
 
       expect(element.getMethods().map(m => m.accessModifier)).toEqual([
         'public',
@@ -138,14 +135,14 @@ describe('ClassDiagram Classes', () => {
         'export class A {p1 = "val"; private p2: boolean;}'
       );
 
-      const element = diagram.getElements()[0];
+      const element = diagram.getFirstClassElementOrThrow();
       expect(element.getProperties()).toHaveLength(2);
     });
 
     test('should property info be correct', () => {
       const diagram = createDiagram('export class A {p1 = "val";}');
 
-      const property = getFirstProperty(diagram);
+      const property = diagram.getFirstPropertyOrThrow();
       expect(property).toMatchObject({
         name: 'p1',
         type: 'string',
@@ -158,7 +155,7 @@ describe('ClassDiagram Classes', () => {
         'export class A {p1 = a ? new A() : 1 as number;}'
       );
 
-      const property = getFirstProperty(diagram);
+      const property = diagram.getFirstPropertyOrThrow();
       expect(property.type).toEqual('number | A');
     });
 
@@ -168,7 +165,7 @@ describe('ClassDiagram Classes', () => {
         ['file.ts', 'export class B {}'],
       ]);
 
-      const property = getFirstProperty(diagram);
+      const property = diagram.getFirstPropertyOrThrow();
 
       expect(property.type).toEqual('B');
     });
@@ -176,7 +173,7 @@ describe('ClassDiagram Classes', () => {
     test('should not specified type be any', () => {
       const diagram = createDiagram('export class A {p1;}');
 
-      const property = getFirstProperty(diagram);
+      const property = diagram.getFirstPropertyOrThrow();
 
       expect(property.type).toEqual('any');
     });
@@ -186,7 +183,7 @@ describe('ClassDiagram Classes', () => {
       export class A { p1: B|A|number| {a: string, b: B} & {c: number};}
       class B {}`);
 
-      const property = getFirstProperty(diagram);
+      const property = diagram.getFirstPropertyOrThrow();
       expect(property.type).toEqual(
         'number | B | A | ({ a: string; b: B; } & { c: number; })'
       );
@@ -200,7 +197,7 @@ describe('ClassDiagram Classes', () => {
         protected p4;
     }`);
 
-      const element = diagram.getElements()[0];
+      const element = diagram.getFirstClassElementOrThrow();
 
       expect(element.getProperties().map(m => m.accessModifier)).toEqual([
         'public',
@@ -217,7 +214,7 @@ describe('ClassDiagram Classes', () => {
         'export class A {get p1() { return "val"; }; private get p2(): boolean {}}'
       );
 
-      const element = diagram.getElements()[0];
+      const element = diagram.getFirstClassElementOrThrow();
       expect(element.getAccessors()).toHaveLength(2);
     });
 
@@ -226,7 +223,7 @@ describe('ClassDiagram Classes', () => {
         'export class A { get p1() {return  "val";}}'
       );
 
-      const accessor = getFirstAccessor(diagram);
+      const accessor = diagram.getFirstAccessorOrThrow();
       expect(accessor).toMatchObject({
         name: 'p1',
         type: 'string',
@@ -239,7 +236,7 @@ describe('ClassDiagram Classes', () => {
         'export class A {get p1() {return a ? new A() : 1 as number;}}'
       );
 
-      const accessor = getFirstAccessor(diagram);
+      const accessor = diagram.getFirstAccessorOrThrow();
       expect(accessor.type).toEqual('number | A');
     });
 
@@ -252,7 +249,7 @@ describe('ClassDiagram Classes', () => {
         ['file.ts', 'export class B {}'],
       ]);
 
-      const accessor = getFirstAccessor(diagram);
+      const accessor = diagram.getFirstAccessorOrThrow();
 
       expect(accessor.type).toEqual('B');
     });
@@ -260,7 +257,7 @@ describe('ClassDiagram Classes', () => {
     test('should not specified type be void', () => {
       const diagram = createDiagram('export class A {get p1() {}}');
 
-      const accessor = getFirstAccessor(diagram);
+      const accessor = diagram.getFirstAccessorOrThrow();
 
       expect(accessor.type).toEqual('void');
     });
@@ -270,7 +267,7 @@ describe('ClassDiagram Classes', () => {
       export class A { get p1(): B|A|number| {a: string, b: B} & {c: number} { };}
       class B {}`);
 
-      const accessor = getFirstAccessor(diagram);
+      const accessor = diagram.getFirstAccessorOrThrow();
       expect(accessor.type).toEqual(
         'number | B | A | ({ a: string; b: B; } & { c: number; })'
       );
@@ -284,7 +281,7 @@ describe('ClassDiagram Classes', () => {
         protected get p4(){};
     }`);
 
-      const element = diagram.getElements()[0];
+      const element = diagram.getFirstClassElementOrThrow();
 
       expect(element.getAccessors().map(m => m.accessModifier)).toEqual([
         'public',

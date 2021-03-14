@@ -1,47 +1,102 @@
 import {ProjectOptions, SourceFile} from 'ts-morph';
-import {ClassDiagram} from '../../result/ClassDiagram';
 import {ClassDiagramBuilder} from '../ClassDiagramBuilder';
 import {Searcher} from '../searcher';
+import {ClassDiagramTestWrapper} from './ClassDiagramTestWrapper';
 import {initProject, initProjectWithFiles} from './initProject';
 
-export function getFirstMethod(diagram: ClassDiagram) {
-  return diagram.getElements()[0].getMethods()[0];
-}
-export function getFirstProperty(diagram: ClassDiagram) {
-  return diagram.getElements()[0].getProperties()[0];
-}
-export function getFirstAccessor(diagram: ClassDiagram) {
-  return diagram.getElements()[0].getAccessors()[0];
-}
+// function isClassLikeElement(el: DiagramElement): el is ClassLikeElement {
+//   return ['Class', 'Interface'].includes(el.kind);
+// }
+
+// function isClassElement(el: DiagramElement): el is ClassElement {
+//   return 'Class' === el.kind;
+// }
+
+// export function getFirstMethod(diagram: ClassDiagram) {
+//   return diagram
+//     .getElements()
+//     .find<ClassLikeElement>(isClassLikeElement)
+//     ?.getMethods()[0];
+// }
+// export function getFirstMethodOrThrow(diagram: ClassDiagram) {
+//   return throwUndefined(getFirstMethod(diagram));
+// }
+
+// export function getFirstPropertyOrThrow(diagram: ClassDiagram) {
+//   return throwUndefined(getFirstProperty(diagram));
+// }
+
+// export function getFirstProperty(diagram: ClassDiagram) {
+//   return diagram
+//     .getElements()
+//     .find<ClassLikeElement>(isClassLikeElement)
+//     ?.getProperties()[0];
+// }
+
+// export function getFirstAccessorOrThrow(diagram: ClassDiagram) {
+//   return throwUndefined(getFirstAccessor(diagram));
+// }
+
+// export function getFirstAccessor(diagram: ClassDiagram) {
+//   return getFirstClassElement(diagram)?.getAccessors()[0];
+// }
+
+// export function getFirstClassElement(diagram: ClassDiagram) {
+//   return diagram.getElements().find<ClassElement>(isClassElement);
+// }
+
+// export function getFirstClassElementOrThrow(diagram: ClassDiagram) {
+//   return throwUndefined(getFirstClassElement(diagram));
+// }
+
+// export function getFirstClassLikeElementOrThrow(diagram: ClassDiagram) {
+//   return throwUndefined(getFirstClassLikeElement(diagram));
+// }
+
+// export function getFirstClassLikeElement(diagram: ClassDiagram) {
+//   return diagram.getElements().find<ClassLikeElement>(isClassLikeElement);
+// }
+
 export function createDiagram(fileContent: string) {
   const builder = new ClassDiagramBuilder();
-  return builder.create({declarations: initElements(fileContent)});
+  return new ClassDiagramTestWrapper(
+    builder.create({declarations: initElements(fileContent)})
+  );
 }
 
 export function createDiagramWithLoadLibs(fileContent: string) {
   const builder = new ClassDiagramBuilder();
-  return builder.create({
-    declarations: initElements(fileContent, {skipLoadingLibFiles: false}),
-  });
+  return new ClassDiagramTestWrapper(
+    builder.create({
+      declarations: initElements(fileContent, {skipLoadingLibFiles: false}),
+    })
+  );
 }
 
 export function createDiagramFromFiles(files: [string, string][]) {
   const builder = new ClassDiagramBuilder();
-  return builder.create({declarations: initElementsWithFiles(files)});
+  return new ClassDiagramTestWrapper(
+    builder.create({declarations: initElementsWithFiles(files)})
+  );
 }
 
-function initElements(fileContent: string, opt: ProjectOptions = {}) {
+export function initElements(fileContent: string, opt: ProjectOptions = {}) {
   const {sourceFile} = initProject(fileContent, opt);
   return search(sourceFile);
 }
 
-function initElementsWithFiles(files: [string, string][]) {
+export function initElementsWithFiles(files: [string, string][]) {
   const {firstFile} = initProjectWithFiles(files);
   expect(firstFile).toBeDefined();
   return search(firstFile!);
 }
 
-function search(sourceFile: SourceFile) {
+export function search(sourceFile: SourceFile) {
   const searcher = new Searcher({checkOnlyExportKeyword: true});
   return searcher.search(sourceFile);
+}
+
+export function throwUndefined<T>(value: T | undefined): T {
+  if (value === undefined) throw new Error('Value is undefined');
+  return value;
 }

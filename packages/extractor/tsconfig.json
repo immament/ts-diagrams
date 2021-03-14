@@ -4,14 +4,14 @@
     "target": "es6",
     "outDir": "dist",
     "lib": ["es6"],
-    "sourceMap": true,
     "rootDir": "src",
     "strict": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "noEmit": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

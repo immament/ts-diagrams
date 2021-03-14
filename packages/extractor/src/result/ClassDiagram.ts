@@ -1,5 +1,5 @@
 export class ClassDiagram {
-  constructor(private elements: ClassLikeElement[]) {}
+  constructor(private elements: DiagramElement[]) {}
 
   getElements() {
     return [...this.elements];
@@ -12,7 +12,7 @@ export interface DiagramElement {
 }
 
 export class FunctionElement implements DiagramElement {
-  kind = 'function';
+  kind = 'Function';
 
   constructor(
     public name: string,
@@ -26,15 +26,11 @@ export class ClassLikeElement implements DiagramElement {
   constructor(
     public name: string,
     protected methods: Method[] = [],
-    protected properties: Property[] = [],
-    protected accessors: Accessor[] = []
+    protected properties: Property[] = []
   ) {
     this.kind = 'ClassLikeElement';
   }
 
-  getAccessors() {
-    return this.accessors;
-  }
   getProperties() {
     return this.properties;
   }
@@ -43,9 +39,33 @@ export class ClassLikeElement implements DiagramElement {
   }
 }
 
-export class ClassElement extends ClassLikeElement {}
+export class ClassElement extends ClassLikeElement {
+  kind: string;
+  constructor(
+    name: string,
+    methods: Method[] = [],
+    properties: Property[] = [],
+    protected accessors: Accessor[] = []
+  ) {
+    super(name, methods, properties);
+    this.kind = 'Class';
+  }
 
-export class InterfaceElement extends ClassLikeElement {}
+  getAccessors() {
+    return this.accessors;
+  }
+}
+
+export class InterfaceElement extends ClassLikeElement {
+  constructor(
+    name: string,
+    methods: Method[] = [],
+    properties: Property[] = []
+  ) {
+    super(name, methods, properties);
+    this.kind = 'Interface';
+  }
+}
 
 export interface Method {
   accessModifier: AccessModifier;
