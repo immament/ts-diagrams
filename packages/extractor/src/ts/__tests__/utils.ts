@@ -4,59 +4,6 @@ import {Searcher} from '../searcher';
 import {ClassDiagramTestWrapper} from './ClassDiagramTestWrapper';
 import {initProject, initProjectWithFiles} from './initProject';
 
-// function isClassLikeElement(el: DiagramElement): el is ClassLikeElement {
-//   return ['Class', 'Interface'].includes(el.kind);
-// }
-
-// function isClassElement(el: DiagramElement): el is ClassElement {
-//   return 'Class' === el.kind;
-// }
-
-// export function getFirstMethod(diagram: ClassDiagram) {
-//   return diagram
-//     .getElements()
-//     .find<ClassLikeElement>(isClassLikeElement)
-//     ?.getMethods()[0];
-// }
-// export function getFirstMethodOrThrow(diagram: ClassDiagram) {
-//   return throwUndefined(getFirstMethod(diagram));
-// }
-
-// export function getFirstPropertyOrThrow(diagram: ClassDiagram) {
-//   return throwUndefined(getFirstProperty(diagram));
-// }
-
-// export function getFirstProperty(diagram: ClassDiagram) {
-//   return diagram
-//     .getElements()
-//     .find<ClassLikeElement>(isClassLikeElement)
-//     ?.getProperties()[0];
-// }
-
-// export function getFirstAccessorOrThrow(diagram: ClassDiagram) {
-//   return throwUndefined(getFirstAccessor(diagram));
-// }
-
-// export function getFirstAccessor(diagram: ClassDiagram) {
-//   return getFirstClassElement(diagram)?.getAccessors()[0];
-// }
-
-// export function getFirstClassElement(diagram: ClassDiagram) {
-//   return diagram.getElements().find<ClassElement>(isClassElement);
-// }
-
-// export function getFirstClassElementOrThrow(diagram: ClassDiagram) {
-//   return throwUndefined(getFirstClassElement(diagram));
-// }
-
-// export function getFirstClassLikeElementOrThrow(diagram: ClassDiagram) {
-//   return throwUndefined(getFirstClassLikeElement(diagram));
-// }
-
-// export function getFirstClassLikeElement(diagram: ClassDiagram) {
-//   return diagram.getElements().find<ClassLikeElement>(isClassLikeElement);
-// }
-
 export function createDiagram(fileContent: string) {
   const builder = new ClassDiagramBuilder();
   return new ClassDiagramTestWrapper(

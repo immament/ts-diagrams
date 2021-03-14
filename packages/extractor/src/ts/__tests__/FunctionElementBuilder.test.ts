@@ -12,7 +12,7 @@ describe('Function Element Builder', () => {
     expect(elements[0].name).toEqual('a');
   });
 
-  test('should returns full method signature', () => {
+  test('should returns full function signature', () => {
     const diagram = createDiagram(
       'export function m1(param1: number, param2: string): string {};'
     );

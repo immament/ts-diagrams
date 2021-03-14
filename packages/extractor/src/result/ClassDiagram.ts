@@ -11,16 +11,6 @@ export interface DiagramElement {
   name: string;
 }
 
-export class FunctionElement implements DiagramElement {
-  kind = 'Function';
-
-  constructor(
-    public name: string,
-    public returnType: string,
-    public parameters: Parameter[]
-  ) {}
-}
-
 export class ClassLikeElement implements DiagramElement {
   kind: string;
   constructor(
@@ -89,6 +79,22 @@ export interface Accessor {
   accessModifier: AccessModifier;
   name: string;
   type: string;
+}
+
+export class FunctionElement implements DiagramElement {
+  kind = 'Function';
+
+  constructor(
+    public name: string,
+    public returnType: string,
+    public parameters: Parameter[]
+  ) {}
+}
+
+export class VariableElement implements DiagramElement {
+  kind = 'Variable';
+
+  constructor(public name: string, public type: string) {}
 }
 
 export type AccessModifier = 'public' | 'private' | 'protected';

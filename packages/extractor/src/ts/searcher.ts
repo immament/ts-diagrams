@@ -18,6 +18,10 @@ export class Searcher {
       this.addExportableNode(c);
     });
 
+    sf.getVariableDeclarations().forEach(c => {
+      this.addExportableNode(c);
+    });
+
     return this.foundNodes;
   }
 

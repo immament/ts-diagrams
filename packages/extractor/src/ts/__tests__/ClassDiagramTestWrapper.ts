@@ -4,6 +4,7 @@ import {
   ClassLikeElement,
   DiagramElement,
   FunctionElement,
+  VariableElement,
 } from '../../result/ClassDiagram';
 import {throwUndefined} from './utils';
 
@@ -77,5 +78,19 @@ export class ClassDiagramTestWrapper {
 
   isFunctionElement(el: DiagramElement): el is FunctionElement {
     return 'Function' === el.kind;
+  }
+
+  // Variables
+
+  getFirstVariableElementOrThrow() {
+    return throwUndefined(this.getFirstVariableElement());
+  }
+
+  getFirstVariableElement() {
+    return this.diagram.getElements().find(this.isVariableElement);
+  }
+
+  isVariableElement(el: DiagramElement): el is VariableElement {
+    return 'Variable' === el.kind;
   }
 }

@@ -4,6 +4,7 @@ import {ClassElementBuilder} from './ClassElementBuilder';
 import {ElementBuilder} from './ElementBuilder';
 import {FunctionElementBuilder} from './FunctionElementBuilder';
 import {InterfaceElementBuilder} from './InterfaceElementBuilder';
+import {VariableElementBuilder} from './VariableElementBuilder';
 
 interface BuilderConstructor {
   new (): ElementBuilder;
@@ -14,6 +15,7 @@ export class ClassDiagramBuilder {
     [ts.SyntaxKind.ClassDeclaration, ClassElementBuilder],
     [ts.SyntaxKind.InterfaceDeclaration, InterfaceElementBuilder],
     [ts.SyntaxKind.FunctionDeclaration, FunctionElementBuilder],
+    [ts.SyntaxKind.VariableDeclaration, VariableElementBuilder],
   ]);
 
   create({declarations}: {declarations: Node[]}) {
