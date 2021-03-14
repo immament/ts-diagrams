@@ -1,23 +1,18 @@
-import {SourceFile} from 'ts-morph';
-import {ClassDiagram} from '../../result/ClassDiagram';
-import {ClassDiagramBuilder} from '../ClassDiagramBuilder';
-import {Searcher} from '../searcher';
-import {initProject, initProjectWithFiles} from './initProject';
+import {
+  createDiagram,
+  createDiagramFromFiles,
+  createDiagramWithLoadLibs,
+  getFirstAccessor,
+  getFirstMethod,
+  getFirstProperty,
+} from './utils';
 
 describe('ClassDiagram Classes', () => {
-  let builder: ClassDiagramBuilder;
-  beforeEach(() => {
-    builder = new ClassDiagramBuilder();
-  });
-
-  test('should create diagram with class elements', () => {
+  test('should create diagram with class element with correct name', () => {
     const diagram = createDiagram('export class A {}');
-    expect(diagram.getElements()).toHaveLength(1);
-  });
-
-  test('should create diagram with class elements', () => {
-    const diagram = createDiagram('export class A {}');
-    expect(diagram.getElements()).toHaveLength(1);
+    const elements = diagram.getElements();
+    expect(elements).toHaveLength(1);
+    expect(elements[0].name).toEqual('A');
   });
 
   test('should class elements contains methods, properties, accessors', () => {
@@ -36,7 +31,7 @@ describe('ClassDiagram Classes', () => {
   describe('Methods', () => {
     test('should returns full method signature', () => {
       const diagram = createDiagram(`export class A {
-        m1(param1: number, param2: string[] ) { return 'a'}
+        m1(param1: number, param2: string ): string { }
       }`);
 
       const method = getFirstMethod(diagram);
@@ -45,7 +40,7 @@ describe('ClassDiagram Classes', () => {
         returnType: 'string',
         parameters: [
           {name: 'param1', type: 'number'},
-          {name: 'param2', type: 'string[]'},
+          {name: 'param2', type: 'string'},
         ],
       });
     });
@@ -91,6 +86,15 @@ describe('ClassDiagram Classes', () => {
 
       const method = getFirstMethod(diagram);
       expect(method.returnType).toEqual('void');
+    });
+
+    test('should return type be string[] (load libs)', () => {
+      const diagram = createDiagramWithLoadLibs(
+        'export class A {m1():string[] {}}'
+      );
+
+      const method = getFirstMethod(diagram);
+      expect(method.returnType).toEqual('string[]');
     });
 
     test('should detected simple returned type from returened value', () => {
@@ -291,41 +295,3 @@ describe('ClassDiagram Classes', () => {
     });
   });
 });
-
-function getFirstMethod(diagram: ClassDiagram) {
-  return diagram.getElements()[0].getMethods()[0];
-}
-
-function getFirstProperty(diagram: ClassDiagram) {
-  return diagram.getElements()[0].getProperties()[0];
-}
-
-function getFirstAccessor(diagram: ClassDiagram) {
-  return diagram.getElements()[0].getAccessors()[0];
-}
-
-function createDiagram(fileContent: string) {
-  const builder = new ClassDiagramBuilder();
-  return builder.create({classes: initElements(fileContent)});
-}
-
-function createDiagramFromFiles(files: [string, string][]) {
-  const builder = new ClassDiagramBuilder();
-  return builder.create({classes: initElementsWithFiles(files)});
-}
-
-function initElements(fileContent: string) {
-  const {sourceFile} = initProject(fileContent);
-  return search(sourceFile);
-}
-
-function initElementsWithFiles(files: [string, string][]) {
-  const {firstFile} = initProjectWithFiles(files);
-  expect(firstFile).toBeDefined();
-  return search(firstFile!);
-}
-
-function search(sourceFile: SourceFile) {
-  const searcher = new Searcher({checkOnlyExportKeyword: true});
-  return searcher.search(sourceFile);
-}

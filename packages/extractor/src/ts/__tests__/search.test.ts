@@ -3,7 +3,7 @@ import {initProject} from './initProject';
 
 describe('Search', () => {
   test('should find nothing', () => {
-    const {sourceFile} = initProject('export interface A {}');
+    const {sourceFile} = initProject('interface A {}');
     const searcher = new Searcher();
     expect(searcher.search(sourceFile)).toHaveLength(0);
   });
