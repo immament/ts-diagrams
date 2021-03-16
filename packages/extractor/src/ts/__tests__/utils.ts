@@ -1,8 +1,8 @@
 import {ProjectOptions, SourceFile} from 'ts-morph';
 import {ClassDiagramBuilder} from '../ClassDiagramBuilder';
+import {initProject, initProjectWithFiles} from '../initProject';
 import {Searcher} from '../searcher';
 import {ClassDiagramTestWrapper} from './ClassDiagramTestWrapper';
-import {initProject, initProjectWithFiles} from './initProject';
 
 export function createDiagram(fileContent: string) {
   const builder = new ClassDiagramBuilder();

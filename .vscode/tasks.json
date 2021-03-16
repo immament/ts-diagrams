@@ -5,9 +5,11 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "watch",
+      "script": "tsc-watch",
       "problemMatcher": ["$tsc-watch"],
+      "path": "packages/ext/",
       "isBackground": true,
+      "label": "npm: tsc-watch - packages/ext",
       "presentation": {
         "reveal": "never"
       },
@@ -15,6 +17,15 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "type": "npm",
+      "script": "test-compile",
+      //"problemMatcher": ["$tsc-watch"],
+      //"isBackground": true,
+      "path": "packages/ext/",
+      "group": "build",
+      "label": "npm: test-compile - packages/ext"
     }
   ]
 }

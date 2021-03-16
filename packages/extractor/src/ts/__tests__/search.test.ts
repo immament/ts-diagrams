@@ -1,5 +1,5 @@
+import {initProject} from '../initProject';
 import {Searcher} from '../searcher';
-import {initProject} from './initProject';
 
 describe('Search', () => {
   test('should find nothing', () => {

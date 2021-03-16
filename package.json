@@ -6,12 +6,14 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build:web": "yarn workspace webview build && yarn move",
-    "move": "cd packages && rm -rf ext/dist/web && mkdir -p ext/dist && mv webview/build ext/dist/web",
-    "watch": "yarn workspace ext watch",
     "ext": "yarn workspace ext",
+    "ext:watch": "yarn workspace ext watch",
+    "ext:test-compile": "yarn workspace ext test-compile",
+    "ext:test-watch": "yarn workspace ext test-watch",
     "extractor": "yarn workspace extractor",
     "web": "yarn workspace webview",
+    "web:build": "yarn workspace webview build && yarn web:move",
+    "web:move": "cd packages && rm -rf ext/dist/web && mkdir -p ext/dist && mv webview/build ext/dist/web",
     "lint": "yarn workspaces run lint"
   },
   "workspaces": [

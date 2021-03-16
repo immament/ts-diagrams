@@ -3,7 +3,9 @@
   "compilerOptions": {
     "noEmit": false,
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "rootDir": "src",
+    "composite": true
   },
   "exclude": ["node_modules", "**/__tests__"]
 }

@@ -35,6 +35,7 @@ export function sampleDiagram(
     ];
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function createMultiElements() {
     const elements = [];
     for (let i = 0; i < 10; i++) {

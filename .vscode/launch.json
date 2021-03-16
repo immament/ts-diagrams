@@ -11,18 +11,18 @@
       "request": "launch",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/ext/"],
       "outFiles": ["${workspaceFolder}/packages/ext/dist/**/*.js"],
-      "preLaunchTask": "npm: watch"
+      "preLaunchTask": "npm: tsc-watch - packages/ext"
     },
     {
       "name": "Extension Tests",
       "type": "extensionHost",
       "request": "launch",
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}",
-        "--extensionTestsPath=${workspaceFolder}/out/test/vscode/suite/index"
+        "--extensionDevelopmentPath=${workspaceFolder}/packages/ext",
+        "--extensionTestsPath=${workspaceFolder}/packages/ext/out/test/vscode/suite/index"
       ],
-      "outFiles": ["${workspaceFolder}/out/test/**/*.js"],
-      "preLaunchTask": "npm: test-watch"
+      "outFiles": ["${workspaceFolder}/packages/ext/out/test/**/*.js"],
+      "preLaunchTask": "npm: test-compile - packages/ext"
     }
   ]
 }

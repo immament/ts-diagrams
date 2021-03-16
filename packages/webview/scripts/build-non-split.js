@@ -12,3 +12,10 @@ config.optimization.splitChunks = {
 };
 
 config.optimization.runtimeChunk = false;
+config.optimization.minimize = false;
+
+// // JS
+// config.output.filename = 'static/js/[name].js';
+// // CSS. "5" is MiniCssPlugin
+// config.plugins[5].options.filename = 'static/js/[name].css';
+// config.plugins[5].options.publicPath = '../';
