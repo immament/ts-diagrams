@@ -25,16 +25,16 @@ export interface Creators<E, L> {
 export class DiagramFactory<E, L> {
   constructor(private creatorsMapper: Creators<E, L>) {}
 
-  create(options: DiagramSkeleton): DiagramContent<E, L> {
+  create(skeleton: DiagramSkeleton): DiagramContent<E, L> {
     const idsToElements = new Map<string, E>();
-    const cells = options.elements.map(e => {
+    const cells = skeleton.elements.map(e => {
       const element = this.createCell(e);
       idsToElements.set(e.id, element);
       return element;
     });
     return {
       elements: cells,
-      links: options.links.map(l => this.createLink(l, idsToElements)),
+      links: skeleton.links.map(l => this.createLink(l, idsToElements)),
     };
   }
 

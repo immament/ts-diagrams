@@ -25,11 +25,12 @@ export class DiagramPanel {
   }
 
   private createDiagram() {
+    console.log('aaaa');
     const extractor = new Extractor();
 
     const diagram = extractor.extract();
 
-    this.panel.webview.postMessage({command: 'first', diagram});
+    this.panel.webview.postMessage({command: 'diagram', diagram});
     //setTimeout(() => this.panel.webview.postMessage({command: 'second'}), 2000);
   }
 
