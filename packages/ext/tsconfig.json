@@ -10,8 +10,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true
+    "noFallthroughCasesInSwitch": true
+    //"noUnusedParameters": true
   },
   "include": ["src"],
   "exclude": ["node_modules", ".vscode-test"],

@@ -1,4 +1,3 @@
-import * as assert from 'assert';
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
 import * as vscode from 'vscode';
@@ -8,8 +7,24 @@ import * as vscode from 'vscode';
 describe('Extension Test Suite', () => {
   vscode.window.showInformationMessage('Start all tests.');
 
-  it('Sample test', () => {
-    assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-    assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+  const disposables: vscode.Disposable[] = [];
+
+  afterEach(async () => {
+    await closeAllEditors();
+    disposeAll(disposables);
   });
+
+  it('should open diagram from command', done => {
+    vscode.commands.executeCommand('diagrams.start').then(() => {
+      done();
+    }, done);
+  });
+
+  function disposeAll(disposables: vscode.Disposable[]) {
+    vscode.Disposable.from(...disposables).dispose();
+  }
+
+  function closeAllEditors() {
+    return vscode.commands.executeCommand('workbench.action.closeAllEditors');
+  }
 });

@@ -3,17 +3,28 @@ import {ClassDiagramBuilder} from './ClassDiagramBuilder';
 import {Searcher} from './searcher';
 
 export class ClassDiagramExtractor {
-  private searcher = new Searcher({checkOnlyExportKeyword: true});
+  private searcher = new Searcher();
   private builder = new ClassDiagramBuilder();
 
-  constructor(private opt: ProjectOptions) {}
+  constructor(
+    private opt: ProjectOptions,
+    private diagramOpt: {diagramSrc?: string; files?: string} = {}
+  ) {}
 
-  extract({directory}: {directory: string}) {
+  extract({directory = ''}: {directory?: string}) {
     const project = this.initProject(this.opt);
 
-    const declarations = project
-      .getSourceFiles(directory + '/**/*.ts')
-      .flatMap(sf => this.searchInFile(sf));
+    if (this.diagramOpt.diagramSrc) {
+      const srcFilesPath =
+        this.diagramOpt.diagramSrc + (this.diagramOpt.files ?? '/**/*.ts');
+      project.addSourceFilesAtPaths(srcFilesPath);
+    }
+
+    const searchedFiles = project.getSourceFiles(
+      directory + (this.diagramOpt.files ?? '/**/*.ts')
+    );
+
+    const declarations = searchedFiles.flatMap(sf => this.searchInFile(sf));
 
     return this.builder.create({declarations});
   }

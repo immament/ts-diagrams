@@ -26,6 +26,15 @@
       "path": "packages/ext/",
       "group": "build",
       "label": "npm: test-compile - packages/ext"
+    },
+    {
+      "type": "npm",
+      "script": "test-watch",
+      "problemMatcher": ["$tsc-watch"],
+      "isBackground": true,
+      "path": "packages/ext/",
+      "group": "build",
+      "label": "npm: test-watch - packages/ext"
     }
   ]
 }

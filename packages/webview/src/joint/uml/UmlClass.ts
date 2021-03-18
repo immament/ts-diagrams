@@ -180,7 +180,6 @@ export class UmlClassView extends joint.dia.ElementView {
     let flags = super.confirmUpdate(flag, opt);
 
     if (this.hasFlag(flags, UML_FIELDS_UPDATE)) {
-      // console.log(UML_FIELDS_UPDATE);
       this.updateSize();
       flags = this.removeFlag(flags, UML_FIELDS_UPDATE);
     }

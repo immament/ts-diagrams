@@ -5,8 +5,23 @@ import {
   InMemoryFileSystemHost,
 } from 'extractor';
 
-export class Extractor {
-  extract() {
+export class DiagramBuilder {
+  extract(diagramSrc?: string, files?: string) {
+    const extractor = new ClassDiagramExtractor(
+      {
+        skipLoadingLibFiles: true,
+        //tsConfigFilePath: 'tsconfig.json',
+        //skipAddingFilesFromTsConfig: true,
+      },
+      {diagramSrc, files}
+    );
+
+    const diagram = extractor.extract({directory: diagramSrc});
+
+    return this.convert(diagram);
+  }
+
+  extractDemo() {
     const host = new InMemoryFileSystemHost();
     host.writeFileSync('tsconfig.json', '{}');
     host.writeFileSync(
@@ -15,7 +30,7 @@ export class Extractor {
     );
 
     host.writeFileSync(
-      '/test/file2.ts',
+      '/test/dir/file2.ts',
       'export class B {m1(param1: number, param2: string): string {};}'
     );
 
@@ -26,14 +41,17 @@ export class Extractor {
     }`
     );
 
-    const extractor = new ClassDiagramExtractor({
-      fileSystem: host,
-      skipLoadingLibFiles: true,
-      tsConfigFilePath: 'tsconfig.json',
-      //skipAddingFilesFromTsConfig: true,
-    });
+    const diagramExtractor = new ClassDiagramExtractor(
+      {
+        fileSystem: host,
+        skipLoadingLibFiles: true,
+        tsConfigFilePath: 'tsconfig.json',
+        //skipAddingFilesFromTsConfig: true,
+      },
+      {diagramSrc: '.'}
+    );
 
-    const diagram = extractor.extract({directory: 'test'});
+    const diagram = diagramExtractor.extract({directory: 'test'});
 
     return this.convert(diagram);
   }

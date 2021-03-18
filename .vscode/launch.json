@@ -1,7 +1,3 @@
-// A launch configuration that compiles the extension and then opens it inside a new window
-// Use IntelliSense to learn about possible attributes.
-// Hover to view descriptions of existing attributes.
-// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
   "version": "0.2.0",
   "configurations": [
@@ -18,11 +14,13 @@
       "type": "extensionHost",
       "request": "launch",
       "args": [
+        "--disable-extensions",
         "--extensionDevelopmentPath=${workspaceFolder}/packages/ext",
         "--extensionTestsPath=${workspaceFolder}/packages/ext/out/test/vscode/suite/index"
       ],
+      //"console": "integratedTerminal",
       "outFiles": ["${workspaceFolder}/packages/ext/out/test/**/*.js"],
-      "preLaunchTask": "npm: test-compile - packages/ext"
+      "preLaunchTask": "npm: test-watch - packages/ext"
     }
   ]
 }

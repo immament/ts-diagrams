@@ -12,10 +12,8 @@ export function run(): Promise<void> {
 
   const testsRoot = path.resolve(__dirname, '../../..');
 
-  console.log(testsRoot);
-
   return new Promise((c, e) => {
-    glob('**/**.test.js', {cwd: testsRoot}, (err, files) => {
+    glob('**/*.test.js', {cwd: testsRoot}, (err, files) => {
       if (err) {
         return e(err);
       }

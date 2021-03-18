@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "out"
+  },
+
+  "exclude": ["node_modules", ".vscode-test", "**/__testdata__"],
+  "references": [{"path": "../extractor/tsconfig.build.json"}]
+}

@@ -4,6 +4,7 @@
   "description": "",
   "version": "0.0.1",
   "license": "MIT",
+  "publisher": "immament",
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
@@ -11,11 +12,11 @@
     "tsc-compile": "tsc -b tsconfig.build.json",
     "tsc-watch": "tsc -b tsconfig.build.json --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
-    "test-compile": "tsc -b tsconfig.build.json --outDir out",
-    "test-watch": "tsc -b tsconfig.build.json --watch --outDir out",
+    "test-compile": "tsc -b tsconfig.test.json",
+    "test-watch": "tsc -b tsconfig.test.json --watch ",
     "pretest": "yarn run test-compile && yarn run lint",
     "lint": "eslint src",
-    "test": "node ./dist/test/vscode/runTest.js",
+    "test": "node ./out/test/vscode/runTest.js",
     "clean": "gts clean",
     "fix": "eslint src --fix"
   },
@@ -41,7 +42,16 @@
         "title": "Refactor",
         "category": "Diagram"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "diagrams.start",
+          "group": "diagram"
+        }
+      ]
+    }
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",

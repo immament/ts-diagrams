@@ -19,4 +19,18 @@ describe('ClassDiagramExtractor', () => {
     const diagram = extractor.extract({directory: 'test'});
     expect(diagram.getElements()).toHaveLength(1);
   });
+
+  test.only('should use real files system', () => {
+    const directory = __dirname + '/test_data';
+    const extractor = new ClassDiagramExtractor(
+      {
+        skipLoadingLibFiles: true,
+        skipAddingFilesFromTsConfig: true,
+      },
+      {diagramSrc: directory}
+    );
+
+    const diagram = extractor.extract({directory});
+    expect(diagram.getElements()).toHaveLength(2);
+  });
 });

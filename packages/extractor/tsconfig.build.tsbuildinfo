@@ -227,8 +227,8 @@
         "affectsGlobalScope": false
       },
       "./src/ts/ClassDiagramExtractor.ts": {
-        "version": "b35df0d6c7125caea552547616e488a72b64ac7feaaa3dea3294dc8626b9ae17",
-        "signature": "274b462570e6921e2bdd00c9847ef2e3e0c35c97f2bfc11d03bbdcba4f6410ee",
+        "version": "45a97a6507228c29337857fa9f09fc273e2ef4428df85d4f094969da3829e381",
+        "signature": "0364a37014d25919bf452496db5acc5aa8e1457d5f308f9821c90fee2e668a35",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -956,10 +956,11 @@
       "noFallthroughCasesInSwitch": true,
       "noUnusedParameters": true,
       "noEmit": false,
-      "composite": true,
       "sourceMap": true,
       "declaration": true,
       "rootDir": "./src",
+      "composite": true,
+      "watch": true,
       "configFilePath": "./tsconfig.build.json"
     },
     "referencedMap": {

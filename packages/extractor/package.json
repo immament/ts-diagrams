@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watch",
     "compile": "tsc -p tsconfig.build.json"
   },
   "devDependencies": {
