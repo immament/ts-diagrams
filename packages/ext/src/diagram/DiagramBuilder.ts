@@ -2,27 +2,32 @@ import {
   ClassDiagram,
   ClassDiagramExtractor,
   ClassElement,
+  FileSystemHost,
   InMemoryFileSystemHost,
 } from 'extractor';
 
 export class DiagramBuilder {
-  extract(diagramSrc?: string, files?: string) {
-    const extractor = new ClassDiagramExtractor(
+  create({
+    diagramSrc,
+    files,
+  }: {
+    diagramSrc?: string;
+    files?: string;
+  } = {}) {
+    const diagramExtractor = new ClassDiagramExtractor(
       {
         skipLoadingLibFiles: true,
-        //tsConfigFilePath: 'tsconfig.json',
-        //skipAddingFilesFromTsConfig: true,
       },
       {diagramSrc, files}
     );
 
-    const diagram = extractor.extract({directory: diagramSrc});
+    const diagram = diagramExtractor.extract({directory: diagramSrc});
 
     return this.convert(diagram);
   }
 
-  extractDemo() {
-    const host = new InMemoryFileSystemHost();
+  createDemo() {
+    const host: FileSystemHost = new InMemoryFileSystemHost();
     host.writeFileSync('tsconfig.json', '{}');
     host.writeFileSync(
       '/test/file.ts',

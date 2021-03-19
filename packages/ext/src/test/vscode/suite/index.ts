@@ -1,39 +1,77 @@
+/* eslint-disable node/no-extraneous-import */
 /* eslint-disable node/no-unpublished-import */
-import * as glob from 'glob';
-import * as Mocha from 'mocha';
-import * as path from 'path';
 
-export function run(): Promise<void> {
-  // Create the mocha test
-  const mocha = new Mocha({
-    ui: 'bdd',
-    color: true,
-  });
+import {runCLI} from 'jest';
+import * as vscode from 'vscode';
+import path = require('path');
 
-  const testsRoot = path.resolve(__dirname, '../../..');
+export function run(
+  testsRoot: string,
+  clb: (error: unknown, failures?: number) => void
+): Promise<void> {
+  vscode.window.showInformationMessage('Run suite');
 
-  return new Promise((c, e) => {
-    glob('**/*.test.js', {cwd: testsRoot}, (err, files) => {
-      if (err) {
-        return e(err);
-      }
+  const projectRootPath = path.join(__dirname, '../../../../');
+  const config = path.join(projectRootPath, 'jest.vscode.config.js');
 
-      // Add files to the test suite
-      files.forEach(f => mocha.addFile(path.resolve(testsRoot, f)));
+  return new Promise((resolve, reject) => {
+    return runCLI(
+      {
+        config,
+        runInBand: true,
+        $0: '',
+        _: [],
+      },
+      [projectRootPath]
+    )
+      .then(cliResult => {
+        if (cliResult.results.numFailedTests > 0) {
+          clb(
+            `${cliResult.results.numFailedTests} tests failed.`,
+            cliResult.results.numFailedTests
+          );
+        } else {
+          clb(undefined, 0);
+        }
 
-      try {
-        // Run the mocha test
-        mocha.run(failures => {
-          if (failures > 0) {
-            e(new Error(`${failures} tests failed.`));
-          } else {
-            c();
-          }
-        });
-      } catch (err) {
-        console.error(err);
-        e(err);
-      }
-    });
+        resolve();
+      })
+      .catch(failure => {
+        reject(failure);
+      });
   });
 }
+
+// const colors = {
+//   passed: 32,
+//   failed: 31,
+//   gray: 90,
+// };
+
+// function msg({
+//   ancestorTitles,
+//   title,
+//   status,
+// }: {
+//   ancestorTitles: string[];
+//   title: string;
+//   status: string;
+// }) {
+//   const statusColor = status as keyof typeof colors;
+
+//   console.info(
+//     `  ${color(statusColor, symbols[status])} ${ancestorTitles} › ${color(
+//       'gray',
+//       title
+//     )} (${color(statusColor, status)})`
+//   );
+// }
+
+// function color(type: keyof typeof colors, text: string) {
+//   return `\u001b[${colors[type]}m${text}\u001b[0m`;
+// }
+
+// const symbols: Record<string, string> = {
+//   passed: '✓',
+//   failed: '✖',
+// };

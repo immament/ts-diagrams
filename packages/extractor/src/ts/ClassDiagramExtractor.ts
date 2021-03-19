@@ -2,12 +2,14 @@ import {Project, ProjectOptions, SourceFile} from 'ts-morph';
 import {ClassDiagramBuilder} from './ClassDiagramBuilder';
 import {Searcher} from './searcher';
 
+export type ExtractorOptions = ProjectOptions;
+
 export class ClassDiagramExtractor {
   private searcher = new Searcher();
   private builder = new ClassDiagramBuilder();
 
   constructor(
-    private opt: ProjectOptions,
+    private opt: ExtractorOptions,
     private diagramOpt: {diagramSrc?: string; files?: string} = {}
   ) {}
 

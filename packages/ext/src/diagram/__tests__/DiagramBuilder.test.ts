@@ -4,9 +4,9 @@ import {DiagramBuilder} from '../DiagramBuilder';
 
 describe('DiagramBuilder', () => {
   it('should create diagram from memory', () => {
-    const extractor = new DiagramBuilder();
+    const builder = new DiagramBuilder();
 
-    const diagram = extractor.extractDemo();
+    const diagram = builder.createDemo();
     expect(diagram.elements).length(3);
   });
 });

@@ -18,7 +18,8 @@
         "--extensionDevelopmentPath=${workspaceFolder}/packages/ext",
         "--extensionTestsPath=${workspaceFolder}/packages/ext/out/test/vscode/suite/index"
       ],
-      //"console": "integratedTerminal",
+      "env": {"FORCE_COLOR": "1"},
+      "console": "integratedTerminal",
       "outFiles": ["${workspaceFolder}/packages/ext/out/test/**/*.js"],
       "preLaunchTask": "npm: test-watch - packages/ext"
     }

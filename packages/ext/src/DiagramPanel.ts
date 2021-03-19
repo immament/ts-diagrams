@@ -60,8 +60,8 @@ export class DiagramPanel {
   }
 
   private createDiagram(diagramSrc?: string, files?: string) {
-    const extractor = new DiagramBuilder();
-    const diagram = extractor.extract(diagramSrc, files);
+    const builder = new DiagramBuilder();
+    const diagram = builder.create({diagramSrc, files});
     this.panel.webview.postMessage({command: 'diagram', diagram});
     //setTimeout(() => this.panel.webview.postMessage({command: 'second'}), 2000);
   }

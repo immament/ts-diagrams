@@ -227,13 +227,13 @@
         "affectsGlobalScope": false
       },
       "./src/ts/ClassDiagramExtractor.ts": {
-        "version": "45a97a6507228c29337857fa9f09fc273e2ef4428df85d4f094969da3829e381",
-        "signature": "0364a37014d25919bf452496db5acc5aa8e1457d5f308f9821c90fee2e668a35",
+        "version": "dfe158cb6dfc1f2ecf8aa094dcbb944c8c8abd35a4d10f02fb5f23fc364ded01",
+        "signature": "bda7a0677b1558a343134f9ff0f2ff7ae685004a7b14335526261584dada2051",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "923112765a2d5ab0b77f9c6cfc5bf2f6e950be241de90ed4b8f97597432f3969",
-        "signature": "406edbcb185d99c749b1ab7d800f92cf53260d0b5336f2900ebfa3ce5acfa67a",
+        "version": "23b8d5235a5887a145d74ff097440ff0f23c003894d58d36d986a11836473b51",
+        "signature": "b42897d7bd9179acb9befb6c78e26d22b686fd676433559e7954e4f652d617f8",
         "affectsGlobalScope": false
       },
       "./src/ts/initProject.ts": {

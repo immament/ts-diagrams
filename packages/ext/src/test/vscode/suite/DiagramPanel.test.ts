@@ -13,7 +13,7 @@ const webViewResourcesMock = {
 };
 
 describe('DiagramPanel', () => {
-  it('should create diagram panel with webview', done => {
+  test('should create diagram panel with webview', done => {
     const panel = new DiagramPanel(
       webViewResourcesMock,
       __dirname + '/__testdata__/',

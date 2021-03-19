@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import {DiagramPanel} from './DiagramPanel';
-import {ReactWebWiewResources} from './WebWiewResources';
+import {ReactWebWiewResources} from './ReactWebWiewResources';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Extension "diagrams" is now active!');
