@@ -1,17 +1,18 @@
 import * as dagre from 'dagre';
 import * as joint from 'jointjs';
 import {debounce} from 'lodash';
+// eslint-disable-next-line node/no-unpublished-import
+import {ClassDiagramDTO} from '../../../common/src';
 import {DiagramFactory} from '../diagram/DiagramFactory';
-import {DiagramSkeleton} from '../diagram/DiagramSkeleton';
 import {jointCreatorsMapper} from './JointDiagramCreators';
 import './uml';
 
-export function diagram(
+export function createDiagram(
   el: HTMLElement,
   options: {
     width?: joint.dia.Paper.Dimension;
     height?: joint.dia.Paper.Dimension;
-    skeleton?: DiagramSkeleton;
+    diagram?: ClassDiagramDTO;
   } = {}
 ) {
   const graph = createGraph();
@@ -26,9 +27,9 @@ export function diagram(
   }
 
   function createDiagramContent() {
-    if (options.skeleton) {
+    if (options.diagram) {
       const factory = new DiagramFactory(jointCreatorsMapper);
-      const content = factory.create(options.skeleton);
+      const content = factory.create(options.diagram);
 
       register(content.elements);
       register(content.links);

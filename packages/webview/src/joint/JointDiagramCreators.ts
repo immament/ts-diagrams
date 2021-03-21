@@ -1,13 +1,23 @@
 import * as joint from 'jointjs';
+// eslint-disable-next-line node/no-unpublished-import
+import {
+  AccessModifier,
+  Accessor,
+  LinkElementDTO,
+  Method,
+  Parameter,
+  Property,
+} from '../../../common/src';
 import {
   Creators,
   DiagramElementCreator,
   DiagramLinkCreator,
 } from '../diagram/DiagramFactory';
-import {SkeletonLink} from '../diagram/DiagramSkeleton';
 import {UmlAbstract, UmlClass, UmlInterface} from './uml';
 import {DirectedAssociation} from './uml/DirectedAssociation';
+import {UmlFunction} from './uml/UmlFunction';
 import {UmlUnknown} from './uml/UmlUnknown';
+import {UmlVariable} from './uml/UmlVariable';
 
 type BaseType = joint.shapes.basic.Generic;
 type LinkBaseType = joint.dia.Link;
@@ -26,22 +36,70 @@ interface LinkConstructor {
   ): joint.dia.Link;
 }
 
+function accessModifierToString(accessModifier: AccessModifier): string {
+  switch (accessModifier) {
+    case 'public':
+      return '+';
+    case 'protected':
+      return '#';
+    case 'private':
+      return '-';
+  }
+}
+
 function umlClassCreator(
   ctor: UmlClassConstructor
 ): DiagramElementCreator<BaseType> {
   return element => {
     return new ctor({
       name: [element.name],
-      properties: element.properties,
-      methods: element.methods,
+      properties: [
+        ...(element.properties?.map(propertyText) ?? []),
+        ...(element.accessors?.map(propertyText) ?? []),
+      ],
+      methods: element.methods?.map(methodText),
     });
   };
+}
+
+function umlFunctionCreator(): DiagramElementCreator<BaseType> {
+  return element => {
+    return new UmlFunction({
+      name: [
+        `${element.name}(${parametersText(element.parameters ?? [])}): ${
+          element.type
+        }`,
+      ],
+    });
+  };
+}
+
+function umlVariableCreator(): DiagramElementCreator<BaseType> {
+  return element => {
+    return new UmlVariable({
+      name: [`${element.name}: ${element.type}`],
+    });
+  };
+}
+
+function methodText(m: Method): string {
+  return `${accessModifierToString(m.accessModifier)} ${
+    m.name
+  }(${parametersText(m.parameters)}): ${m.returnType}`;
+}
+
+function propertyText(p: Property | Accessor) {
+  return `${accessModifierToString(p.accessModifier)} ${p.name}: ${p.type}`;
+}
+
+function parametersText(params: Parameter[]): string {
+  return params.map(p => `${p.name}: ${p.type}`).join(',');
 }
 
 function umlLinkCreator(
   ctor: LinkConstructor
 ): DiagramLinkCreator<LinkBaseType, BaseType> {
-  return (link: SkeletonLink, idsToElement: Map<string, BaseType>) => {
+  return (link: LinkElementDTO, idsToElement: Map<string, BaseType>) => {
     const fromElement = idsToElement.get(link.fromId);
     const toElement = idsToElement.get(link.toId);
     return new ctor({
@@ -72,6 +130,8 @@ export const jointCreatorsMapper: Creators<BaseType, LinkBaseType> = {
     ['uml.Class', umlClassCreator(UmlClass)],
     ['uml.Interface', umlClassCreator(UmlInterface)],
     ['uml.Abstract', umlClassCreator(UmlAbstract)],
+    ['uml.Function', umlFunctionCreator()],
+    ['uml.Variable', umlVariableCreator()],
   ]),
   defaultElement: umlClassCreator(UmlUnknown),
   link: new Map<string, DiagramLinkCreator<LinkBaseType, BaseType>>([

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "node ./scripts/build-non-split.js ",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
     "lint": "eslint .",
     "clean": "gts clean",
     "fix": "eslint . --fix"

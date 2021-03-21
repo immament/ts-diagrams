@@ -20,16 +20,7 @@
     },
     {
       "type": "npm",
-      "script": "test-compile",
-      //"problemMatcher": ["$tsc-watch"],
-      //"isBackground": true,
-      "path": "packages/ext/",
-      "group": "build",
-      "label": "npm: test-compile - packages/ext"
-    },
-    {
-      "type": "npm",
-      "script": "test-watch",
+      "script": "test:vscode-watch",
       "problemMatcher": ["$tsc-watch"],
       "isBackground": true,
       "path": "packages/ext/",

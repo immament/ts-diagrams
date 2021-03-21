@@ -1,17 +1,18 @@
+/* eslint-disable node/no-unpublished-import */
 import {
-  DiagramSkeleton,
-  SkeletonElement,
-  SkeletonLink,
-} from './DiagramSkeleton';
+  ClassDiagramDTO,
+  DiagramElementDTO,
+  LinkElementDTO,
+} from '../../../common/src';
 
 export interface DiagramContent<E, L> {
   elements: E[];
   links: L[];
 }
 
-export type DiagramElementCreator<T> = (element: SkeletonElement) => T;
+export type DiagramElementCreator<T> = (element: DiagramElementDTO) => T;
 export type DiagramLinkCreator<L, E> = (
-  link: SkeletonLink,
+  link: LinkElementDTO,
   elements: Map<string, E>
 ) => L;
 
@@ -25,7 +26,7 @@ export interface Creators<E, L> {
 export class DiagramFactory<E, L> {
   constructor(private creatorsMapper: Creators<E, L>) {}
 
-  create(skeleton: DiagramSkeleton): DiagramContent<E, L> {
+  create(skeleton: ClassDiagramDTO): DiagramContent<E, L> {
     const idsToElements = new Map<string, E>();
     const cells = skeleton.elements.map(e => {
       const element = this.createCell(e);
@@ -38,16 +39,16 @@ export class DiagramFactory<E, L> {
     };
   }
 
-  private createCell(src: SkeletonElement) {
+  private createCell(src: DiagramElementDTO) {
     return (
-      this.creatorsMapper.element.get(src.type) ??
+      this.creatorsMapper.element.get(src.kind) ??
       this.creatorsMapper.defaultElement
     )(src);
   }
 
-  private createLink(link: SkeletonLink, idsToElements: Map<string, E>) {
+  private createLink(link: LinkElementDTO, idsToElements: Map<string, E>) {
     return (
-      this.creatorsMapper.link.get(link.type) ?? this.creatorsMapper.defaultLink
+      this.creatorsMapper.link.get(link.kind) ?? this.creatorsMapper.defaultLink
     )(link, idsToElements);
   }
 }

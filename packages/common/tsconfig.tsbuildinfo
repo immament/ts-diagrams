@@ -1,6 +1,11 @@
 {
   "program": {
     "fileInfos": {
+      "../../node_modules/typescript/lib/lib.es6.d.ts": {
+        "version": "721cec59c3fef87aaf480047d821fb758b3ec9482c4129a54631e6e25e432a31",
+        "signature": "721cec59c3fef87aaf480047d821fb758b3ec9482c4129a54631e6e25e432a31",
+        "affectsGlobalScope": false
+      },
       "../../node_modules/typescript/lib/lib.es5.d.ts": {
         "version": "b3584bc5798ed422ce2516df360ffa9cf2d80b5eae852867db9ba3743145f895",
         "signature": "b3584bc5798ed422ce2516df360ffa9cf2d80b5eae852867db9ba3743145f895",
@@ -26,10 +31,25 @@
         "signature": "5f4e733ced4e129482ae2186aae29fde948ab7182844c3a5a51dd346182c7b06",
         "affectsGlobalScope": false
       },
-      "../../node_modules/typescript/lib/lib.es2019.d.ts": {
-        "version": "e6b724280c694a9f588847f754198fb96c43d805f065c3a5b28bbc9594541c84",
-        "signature": "e6b724280c694a9f588847f754198fb96c43d805f065c3a5b28bbc9594541c84",
-        "affectsGlobalScope": false
+      "../../node_modules/typescript/lib/lib.dom.d.ts": {
+        "version": "feeeb1dd8a80fb76be42b0426e8f3ffa9bdef3c2f3c12c147e7660b1c5ba8b3b",
+        "signature": "feeeb1dd8a80fb76be42b0426e8f3ffa9bdef3c2f3c12c147e7660b1c5ba8b3b",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.dom.iterable.d.ts": {
+        "version": "d42f4141bd9ce82b4e2902f26acb00c183e321be19a38bbc0e76a922c1724c94",
+        "signature": "d42f4141bd9ce82b4e2902f26acb00c183e321be19a38bbc0e76a922c1724c94",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts": {
+        "version": "7fac8cb5fc820bc2a59ae11ef1c5b38d3832c6d0dfaec5acdb5569137d09a481",
+        "signature": "7fac8cb5fc820bc2a59ae11ef1c5b38d3832c6d0dfaec5acdb5569137d09a481",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.scripthost.d.ts": {
+        "version": "097a57355ded99c68e6df1b738990448e0bf170e606707df5a7c0481ff2427cd",
+        "signature": "097a57355ded99c68e6df1b738990448e0bf170e606707df5a7c0481ff2427cd",
+        "affectsGlobalScope": true
       },
       "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
         "version": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
@@ -131,26 +151,6 @@
         "signature": "c80df75850fea5caa2afe43b9949338ce4e2de086f91713e9af1a06f973872b8",
         "affectsGlobalScope": true
       },
-      "../../node_modules/typescript/lib/lib.es2019.array.d.ts": {
-        "version": "9d57b2b5d15838ed094aa9ff1299eecef40b190722eb619bac4616657a05f951",
-        "signature": "9d57b2b5d15838ed094aa9ff1299eecef40b190722eb619bac4616657a05f951",
-        "affectsGlobalScope": true
-      },
-      "../../node_modules/typescript/lib/lib.es2019.object.d.ts": {
-        "version": "6c51b5dd26a2c31dbf37f00cfc32b2aa6a92e19c995aefb5b97a3a64f1ac99de",
-        "signature": "6c51b5dd26a2c31dbf37f00cfc32b2aa6a92e19c995aefb5b97a3a64f1ac99de",
-        "affectsGlobalScope": true
-      },
-      "../../node_modules/typescript/lib/lib.es2019.string.d.ts": {
-        "version": "93544ca2f26a48716c1b6c5091842cad63129daac422dfa4bc52460465f22bb1",
-        "signature": "93544ca2f26a48716c1b6c5091842cad63129daac422dfa4bc52460465f22bb1",
-        "affectsGlobalScope": true
-      },
-      "../../node_modules/typescript/lib/lib.es2019.symbol.d.ts": {
-        "version": "2ad234885a4240522efccd77de6c7d99eecf9b4de0914adb9a35c0c22433f993",
-        "signature": "2ad234885a4240522efccd77de6c7d99eecf9b4de0914adb9a35c0c22433f993",
-        "affectsGlobalScope": true
-      },
       "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts": {
         "version": "7b5a10e3c897fabece5a51aa85b4111727d7adb53c2734b5d37230ff96802a09",
         "signature": "7b5a10e3c897fabece5a51aa85b4111727d7adb53c2734b5d37230ff96802a09",
@@ -161,99 +161,14 @@
         "signature": "506b80b9951c9381dc5f11897b31fca5e2a65731d96ddefa19687fbc26b23c6e",
         "affectsGlobalScope": true
       },
-      "../../node_modules/@ts-morph/common/lib/typescript.d.ts": {
-        "version": "b4e3edb529b83431180aba7ea2d39302afe8919962344db98d71fe0253951b62",
-        "signature": "b4e3edb529b83431180aba7ea2d39302afe8919962344db98d71fe0253951b62",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/@ts-morph/common/lib/ts-morph-common.d.ts": {
-        "version": "e6fc895e92e3bd1525fcf3fc7c364e14ea11ec375dded7fca9125dbea30a9adf",
-        "signature": "e6fc895e92e3bd1525fcf3fc7c364e14ea11ec375dded7fca9125dbea30a9adf",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/ts-morph/lib/ts-morph.d.ts": {
-        "version": "8d1e2994e64e3834f3afd9617052eb5dd8ac3c4dcd27b48b9089514b92e43819",
-        "signature": "8d1e2994e64e3834f3afd9617052eb5dd8ac3c4dcd27b48b9089514b92e43819",
-        "affectsGlobalScope": false
-      },
-      "../common/dist/ClassDiagram.d.ts": {
-        "version": "9bbce91326c720149563e5c7dcf372cd25bf2d3f84ae7d1a165a3637ee0f001b",
+      "./src/ClassDiagram.ts": {
+        "version": "d5b10a2920691672d5b950e9a2f5be49337430b435fd1ab97f392990122d8f4a",
         "signature": "9bbce91326c720149563e5c7dcf372cd25bf2d3f84ae7d1a165a3637ee0f001b",
         "affectsGlobalScope": false
       },
-      "../common/dist/index.d.ts": {
+      "./src/index.ts": {
         "version": "8400a55a5770106f723fc4b6e8b398676177e4805c50e4ca5bcafd71adcc04f2",
         "signature": "8400a55a5770106f723fc4b6e8b398676177e4805c50e4ca5bcafd71adcc04f2",
-        "affectsGlobalScope": false
-      },
-      "./src/result/ClassDiagram.ts": {
-        "version": "d630718b8a169630625f28d279aff651f7a18cbbd27d98268c0e1b2b3af0c09b",
-        "signature": "796aab966e02d165989d4bc12c61bb395ca87e2c0d69c9aab31b87d53bd9cf8f",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ts-utils.ts": {
-        "version": "1ba83237219625b0d4eb011db89dabbe3f5e29ccf7df3dc9f6cb9e2883b0ea15",
-        "signature": "bb1286342698b8354e6d8f515f55e4ef2fcc2fd5b583bba88683d040d36b2ed7",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassLikeElementBuilder.ts": {
-        "version": "3b91932af78ef3a701ce5c1e89e7246a93a0178fa08ac2e089a1c5397180c4cb",
-        "signature": "4e9df137363ff508e882c44f76dd83447201c63097e622f8c985d62cd8600729",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ElementBuilder.ts": {
-        "version": "4ad63099b61c4f40062e372d79bb8cf6d009c18faa945c2ed296f9fb43e07e7a",
-        "signature": "5093e1949aa6c791b776cb02e966a62d9e7269addf49f33d2cbf7820d78932fc",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassElementBuilder.ts": {
-        "version": "d6b5d6b10fc4fd43448e3556a10657aad8f364d9d181e3ba3c6543f099516a94",
-        "signature": "817aa8882685e67eac08576592a80565b9276fa7e3892aa10f679b70c7699498",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/FunctionElementBuilder.ts": {
-        "version": "329d609e9abb73293d6980b26299c9c9aa52575a3d1fc12361484193a47e4095",
-        "signature": "03108f2458c992f881fd5b4293d112cc0cc95fd615506ef58f5d28bf3e8308de",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/InterfaceElementBuilder.ts": {
-        "version": "a7c8489e0e31e38abf507cc718e49c979b3cc117846b72318599db656cc33960",
-        "signature": "870443af442c2d9b975ae69064f0077d2695a969b3af1bf1832513468a41de33",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/VariableElementBuilder.ts": {
-        "version": "aa4de42b54fc2f7e91c4811cf1553b9a9d53b1e131ce919fb3644c774e641d5f",
-        "signature": "9924abcbbb5a69de1699e4c2f84c238a4860c2d08e1b7497935b6fd1ec5ba890",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassDiagramBuilder.ts": {
-        "version": "e373bed4c78fb9f4802a5a7a392130f9063a6ef81b704766d91d568d530e7ecf",
-        "signature": "ec2949db511b84a30331cd1a267c204afdbaa74a7732462305bdc9a61c22acc3",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/searcher.ts": {
-        "version": "248586b5002dc0fd6e9e531fe723c99994f865e60e1c54e1111bfedf3a04c663",
-        "signature": "e995fd8dc54b8cec28c3d34230c4360520bf70d1c1a44187152cec7acaa0b917",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassDiagramExtractor.ts": {
-        "version": "468aeffcf45eb884e62872986534ff97ec6f37059ea25a76e43ce04abaaf3113",
-        "signature": "34be98153e72cc44a388b05d76eeed4e0be0dd93050d042f72b059f982433492",
-        "affectsGlobalScope": false
-      },
-      "./src/index.ts": {
-        "version": "23b8d5235a5887a145d74ff097440ff0f23c003894d58d36d986a11836473b51",
-        "signature": "b42897d7bd9179acb9befb6c78e26d22b686fd676433559e7954e4f652d617f8",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/initProject.ts": {
-        "version": "439ac67dc684e73695eb5cc61ec45c0aa26644b02d898f462809a409f9c21bfd",
-        "signature": "6e3beb4968b398e54123a74ff9c22891f67ecaee58c0ebe623996ccdc384e937",
-        "affectsGlobalScope": false
-      },
-      "./src/test.ts": {
-        "version": "f13d082ebfdca53649b339c9ca974e7533627a332b613f5e502b81bbbb7835cf",
-        "signature": "840c92f75b4f40d6315b93dca5eb589ef63d0ce155e76129459657063f51944b",
         "affectsGlobalScope": false
       },
       "../../node_modules/@types/anymatch/index.d.ts": {
@@ -961,22 +876,16 @@
       "module": 1,
       "target": 2,
       "outDir": "./dist",
-      "lib": [
-        "lib.es2019.d.ts"
-      ],
+      "rootDir": "./src",
       "strict": true,
       "resolveJsonModule": true,
       "skipLibCheck": true,
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
       "noUnusedParameters": true,
-      "noEmit": false,
-      "sourceMap": true,
-      "declaration": true,
-      "rootDir": "./src",
       "composite": true,
       "watch": true,
-      "configFilePath": "./tsconfig.build.json"
+      "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
       "../../node_modules/@babel/parser/typings/babel-parser.d.ts": [
@@ -986,17 +895,6 @@
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
       "../../node_modules/@babel/types/lib/index.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/@ts-morph/common/lib/ts-morph-common.d.ts": [
-        "../../node_modules/@ts-morph/common/lib/typescript.d.ts",
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/@ts-morph/common/lib/typescript.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
@@ -2095,8 +1993,12 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../../node_modules/ts-morph/lib/ts-morph.d.ts": [
-        "../../node_modules/@ts-morph/common/lib/ts-morph-common.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
+      ],
+      "../../node_modules/typescript/lib/lib.dom.iterable.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
@@ -2221,31 +2123,6 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../../node_modules/typescript/lib/lib.es2019.array.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.object.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.string.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.symbol.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
       "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
@@ -2256,131 +2133,36 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
+      "../../node_modules/typescript/lib/lib.es6.d.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
+      ],
       "../../node_modules/typescript/lib/lib.esnext.intl.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../common/dist/ClassDiagram.d.ts": [
+      "../../node_modules/typescript/lib/lib.scripthost.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../common/dist/index.d.ts": [
+      "../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../common/dist/ClassDiagram.d.ts"
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
+      ],
+      "./src/ClassDiagram.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
       "./src/index.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassDiagramExtractor.ts"
-      ],
-      "./src/result/ClassDiagram.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../common/dist/index.d.ts"
-      ],
-      "./src/test.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "./src/ts/initProject.ts"
-      ],
-      "./src/ts/ClassDiagramBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassElementBuilder.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/FunctionElementBuilder.ts",
-        "./src/ts/InterfaceElementBuilder.ts",
-        "./src/ts/VariableElementBuilder.ts"
-      ],
-      "./src/ts/ClassDiagramExtractor.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/ts/ClassDiagramBuilder.ts",
-        "./src/ts/searcher.ts"
-      ],
-      "./src/ts/ClassElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassLikeElementBuilder.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/ts-utils.ts"
-      ],
-      "./src/ts/ClassLikeElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ts-utils.ts"
-      ],
-      "./src/ts/ElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts"
-      ],
-      "./src/ts/FunctionElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/ts-utils.ts"
-      ],
-      "./src/ts/InterfaceElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassLikeElementBuilder.ts",
-        "./src/ts/ElementBuilder.ts"
-      ],
-      "./src/ts/VariableElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/ts-utils.ts"
-      ],
-      "./src/ts/initProject.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
-      ],
-      "./src/ts/searcher.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
-      ],
-      "./src/ts/ts-utils.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
+        "./src/ClassDiagram.ts"
       ]
     },
     "exportedModulesMap": {
@@ -2395,17 +2177,6 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../../node_modules/@ts-morph/common/lib/ts-morph-common.d.ts": [
-        "../../node_modules/@ts-morph/common/lib/typescript.d.ts",
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/@ts-morph/common/lib/typescript.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
       "../../node_modules/@types/anymatch/index.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
@@ -3500,8 +3271,12 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../../node_modules/ts-morph/lib/ts-morph.d.ts": [
-        "../../node_modules/@ts-morph/common/lib/ts-morph-common.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
+      ],
+      "../../node_modules/typescript/lib/lib.dom.iterable.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
@@ -3626,31 +3401,6 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../../node_modules/typescript/lib/lib.es2019.array.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.object.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.string.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
-      "../../node_modules/typescript/lib/lib.es2019.symbol.d.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
-      ],
       "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
@@ -3661,85 +3411,33 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
+      "../../node_modules/typescript/lib/lib.es6.d.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
+      ],
       "../../node_modules/typescript/lib/lib.esnext.intl.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../common/dist/ClassDiagram.d.ts": [
+      "../../node_modules/typescript/lib/lib.scripthost.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
-      "../common/dist/index.d.ts": [
+      "../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../common/dist/ClassDiagram.d.ts"
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts"
       ],
       "./src/index.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassDiagramExtractor.ts"
-      ],
-      "./src/result/ClassDiagram.ts": [
-        "../common/dist/index.d.ts"
-      ],
-      "./src/test.ts": [
-        "./src/ts/initProject.ts"
-      ],
-      "./src/ts/ClassDiagramBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts"
-      ],
-      "./src/ts/ClassDiagramExtractor.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "../common/dist/index.d.ts"
-      ],
-      "./src/ts/ClassElementBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
-      ],
-      "./src/ts/ClassLikeElementBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts"
-      ],
-      "./src/ts/ElementBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts"
-      ],
-      "./src/ts/FunctionElementBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
-      ],
-      "./src/ts/InterfaceElementBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
-      ],
-      "./src/ts/VariableElementBuilder.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
-      ],
-      "./src/ts/initProject.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
-      ],
-      "./src/ts/searcher.ts": [
-        "../../node_modules/@ts-morph/common/lib/typescript.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
-      ],
-      "./src/ts/ts-utils.ts": [
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
+        "./src/ClassDiagram.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
       "../../node_modules/@babel/parser/typings/babel-parser.d.ts",
       "../../node_modules/@babel/types/lib/index.d.ts",
-      "../../node_modules/@ts-morph/common/lib/ts-morph-common.d.ts",
-      "../../node_modules/@ts-morph/common/lib/typescript.d.ts",
       "../../node_modules/@types/anymatch/index.d.ts",
       "../../node_modules/@types/aria-query/index.d.ts",
       "../../node_modules/@types/babel__core/index.d.ts",
@@ -3878,7 +3576,8 @@
       "../../node_modules/pretty-format/build/index.d.ts",
       "../../node_modules/pretty-format/build/types.d.ts",
       "../../node_modules/source-map/source-map.d.ts",
-      "../../node_modules/ts-morph/lib/ts-morph.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.iterable.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.d.ts",
@@ -3903,30 +3602,14 @@
       "../../node_modules/typescript/lib/lib.es2018.intl.d.ts",
       "../../node_modules/typescript/lib/lib.es2018.promise.d.ts",
       "../../node_modules/typescript/lib/lib.es2018.regexp.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.array.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.object.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.string.d.ts",
-      "../../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
       "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts",
       "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.es6.d.ts",
       "../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
-      "../common/dist/ClassDiagram.d.ts",
-      "../common/dist/index.d.ts",
-      "./src/index.ts",
-      "./src/result/ClassDiagram.ts",
-      "./src/test.ts",
-      "./src/ts/ClassDiagramBuilder.ts",
-      "./src/ts/ClassDiagramExtractor.ts",
-      "./src/ts/ClassElementBuilder.ts",
-      "./src/ts/ClassLikeElementBuilder.ts",
-      "./src/ts/ElementBuilder.ts",
-      "./src/ts/FunctionElementBuilder.ts",
-      "./src/ts/InterfaceElementBuilder.ts",
-      "./src/ts/VariableElementBuilder.ts",
-      "./src/ts/initProject.ts",
-      "./src/ts/searcher.ts",
-      "./src/ts/ts-utils.ts"
+      "../../node_modules/typescript/lib/lib.scripthost.d.ts",
+      "../../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
+      "./src/ClassDiagram.ts",
+      "./src/index.ts"
     ]
   },
   "version": "4.2.3"

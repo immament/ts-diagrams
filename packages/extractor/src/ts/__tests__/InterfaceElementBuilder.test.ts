@@ -12,7 +12,7 @@ describe('ClassDiagram Interfaces', () => {
     expect(elements[0].name).toEqual('A');
   });
 
-  test.only('should interface elements contains methods, properties', () => {
+  test('should interface elements contains methods, properties', () => {
     const diagram = createDiagram(`export interface A {
       p1: string;
       m1(): string;

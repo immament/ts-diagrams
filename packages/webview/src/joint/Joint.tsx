@@ -1,33 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import './Joint.css';
 
 import 'jointjs/dist/joint.css';
-import {diagram} from './diagram';
-import {DiagramSkeleton} from '../diagram/DiagramSkeleton';
+import {createDiagram} from './diagram';
+import {ClassDiagramDTO} from '../../../common/src';
 
-function Joint() {
+function Joint({diagram}: {diagram?: ClassDiagramDTO}) {
   const el = React.createRef<HTMLDivElement>();
-  const [skeleton, setSkeleton] = useState<DiagramSkeleton | undefined>(
-    undefined
-  );
-  useEffect(() => {
-    window.addEventListener(
-      'message',
-      (event: MessageEvent<{command: string; diagram?: DiagramSkeleton}>) => {
-        const message = event.data;
-        if (message.command === 'diagram') {
-          setSkeleton(message.diagram);
-        }
-      }
-    );
-  }, []);
 
   useEffect(() => {
-    if (el.current && skeleton) {
-      diagram(el.current, {skeleton});
+    if (el.current && diagram) {
+      createDiagram(el.current, {diagram});
     }
-  }, [el, skeleton]);
+  }, [el, diagram]);
 
   return (
     <div id="paper-container">

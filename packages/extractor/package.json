@@ -10,14 +10,15 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "compile": "tsc -p tsconfig.build.json"
+    "compile": "tsc -b tsconfig.build.json",
+    "build": "yarn compile"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-typescript": "^7.13.0",
     "babel-jest": "^26.6.3",
-    "jest": "^26.6.3",
+    "jest": "26.6.0",
     "ts-jest": "^26.5.3",
     "typescript": "^4.2.3"
   },

@@ -28,14 +28,14 @@ export class ClassDiagramExtractor {
 
     const declarations = searchedFiles.flatMap(sf => this.searchInFile(sf));
 
-    return this.builder.create({declarations});
+    return this.builder.create({declarations}).toDTO();
   }
 
   private initProject(opt: ProjectOptions = {}) {
     return new Project(opt);
   }
 
-  searchInFile(sourceFile: SourceFile) {
+  private searchInFile(sourceFile: SourceFile) {
     return this.searcher.search(sourceFile);
   }
 }

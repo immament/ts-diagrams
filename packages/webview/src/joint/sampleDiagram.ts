@@ -1,37 +1,29 @@
+/* eslint-disable node/no-unpublished-import */
 /* istanbul ignore file */
-
-import * as joint from 'jointjs';
 import {
-  DiagramSkeleton,
-  SkeletonElement,
-  SkeletonLink,
-} from '../diagram/DiagramSkeleton';
-import {diagram} from './diagram';
+  ClassDiagramDTO,
+  DiagramElementDTO,
+  LinkElementDTO,
+} from '../../../common/src';
 
-export function sampleDiagram(
-  el: HTMLElement,
-  options: {
-    width?: joint.dia.Paper.Dimension;
-    height?: joint.dia.Paper.Dimension;
-  } = {}
-) {
-  const skeleton = createSkeleton();
+export function sampleDiagram() {
+  const diagram = createDiagram();
 
-  diagram(el, {...options, skeleton});
+  window.postMessage({command: 'diagram', diagram}, '*');
 
-  function createSkeleton(): DiagramSkeleton {
+  function createDiagram(): ClassDiagramDTO {
     return {
       elements: createElements(),
       links: createLinks(),
     };
   }
 
-  function createLinks(): SkeletonLink[] {
+  function createLinks(): LinkElementDTO[] {
     return [
-      {fromId: '2', toId: '1', type: 'uml.Association'},
-      {fromId: '3', toId: '1', type: 'uml.Generalization'},
-      {fromId: '4', toId: '1', type: 'uml.Aggreagation'},
-      {fromId: '4', toId: '3', type: 'uml.Composition'},
+      {fromId: '2', toId: '1', kind: 'uml.Association'},
+      {fromId: '3', toId: '1', kind: 'uml.Generalization'},
+      {fromId: '4', toId: '1', kind: 'uml.Aggreagation'},
+      {fromId: '4', toId: '3', kind: 'uml.Composition'},
     ];
   }
 
@@ -44,49 +36,72 @@ export function sampleDiagram(
     return elements;
   }
 
-  function createElements(): SkeletonElement[] {
+  function createElements(): DiagramElementDTO[] {
     return [
       {
         id: '1',
-        type: 'uml.Interface',
+        kind: 'uml.Interface',
         name: 'Mammal2',
-        properties: [
-          'dob1: Date',
-          'dob2: Date',
-          'dob3: Date',
-          'dob4: Date',
-          'dob5: Date',
-        ],
+        properties: [{name: 'dob1', type: 'Date', accessModifier: 'public'}],
         methods: [
-          '+ setDateOfBirth(dob: Date): Void',
-          '+ getAgeAsDays1(): number | string | Date | undefined',
-          '+ getAgeAsDays2(): Numeric',
-          '- getAgeAsDays3(): Numeric',
+          {
+            name: 'setDateOfBirth',
+            accessModifier: 'public',
+            parameters: [{name: 'dob', type: 'Date'}],
+            returnType: 'void',
+          },
+          {
+            name: 'getAgeAsDays1',
+            accessModifier: 'public',
+            parameters: [],
+            returnType: 'number | string | Date | undefined',
+          },
+          {
+            name: 'getAgeAsDays2',
+            accessModifier: 'public',
+            parameters: [],
+            returnType: 'number',
+          },
+          {
+            name: 'getAgeAsDays3',
+            accessModifier: 'private',
+            parameters: [],
+            returnType: 'number',
+          },
         ],
       },
       {
         id: '2',
-        type: 'uml.Class',
+        kind: 'uml.Class',
         name: 'BloodGroup',
-        properties: [
-          'dob1: Date',
-          'dob2: Date',
-          'dob3: Date',
-          'dob4: Date',
-          'dob5: Date',
-        ],
+        properties: [{name: 'dob1', type: 'Date', accessModifier: 'protected'}],
+        accessors: [{name: 'acc1', type: 'string', accessModifier: 'public'}],
       },
       {
         id: '3',
-        type: 'uml.Abstract',
+        kind: 'uml.Abstract',
         name: 'BloodGroup',
-        methods: ['+ isCompatible(bG: String): Boolean'],
+        methods: [
+          {
+            name: 'isCompatible',
+            accessModifier: 'public',
+            parameters: [{name: 'bg', type: 'string'}],
+            returnType: 'boolean',
+          },
+        ],
       },
       {
         id: '4',
-        type: 'uml.Unknown',
+        kind: 'Unknown',
         name: 'Unknown',
-        methods: ['+ isCompatible(bG: String): Boolean'],
+        methods: [
+          {
+            name: 'isCompatible',
+            accessModifier: 'public',
+            parameters: [{name: 'bg', type: 'string'}],
+            returnType: 'boolean',
+          },
+        ],
       },
     ];
   }

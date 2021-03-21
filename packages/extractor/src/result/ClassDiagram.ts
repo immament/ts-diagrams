@@ -1,17 +1,30 @@
-export class ClassDiagram {
+import {ClassDiagramDTO, DiagramElementDTO} from '../../../common/src';
+
+export interface toDTO<T> {
+  toDTO(): T;
+}
+
+export class ClassDiagram implements toDTO<ClassDiagramDTO> {
   constructor(private elements: DiagramElement[]) {}
 
   getElements() {
     return [...this.elements];
   }
+
+  toDTO(): ClassDiagramDTO {
+    return {
+      elements: this.getElements().map(e => e.toDTO()),
+      links: [],
+    };
+  }
 }
 
-export interface DiagramElement {
+export interface DiagramElement extends toDTO<DiagramElementDTO> {
   kind: string;
   name: string;
 }
 
-export class ClassLikeElement implements DiagramElement {
+export abstract class ClassLikeElement implements DiagramElement {
   kind: string;
   constructor(
     public name: string,
@@ -26,6 +39,16 @@ export class ClassLikeElement implements DiagramElement {
   }
   getMethods() {
     return this.methods;
+  }
+
+  toDTO(): DiagramElementDTO {
+    return {
+      id: nextId(),
+      kind: 'uml.' + this.kind,
+      name: this.name,
+      methods: getIfHasElements(this.getMethods()),
+      properties: getIfHasElements(this.getProperties()),
+    };
   }
 }
 
@@ -44,6 +67,13 @@ export class ClassElement extends ClassLikeElement {
   getAccessors() {
     return this.accessors;
   }
+
+  toDTO(): DiagramElementDTO {
+    return {
+      ...super.toDTO(),
+      accessors: getIfHasElements(this.getAccessors()),
+    };
+  }
 }
 
 export class InterfaceElement extends ClassLikeElement {
@@ -54,6 +84,10 @@ export class InterfaceElement extends ClassLikeElement {
   ) {
     super(name, methods, properties);
     this.kind = 'Interface';
+  }
+
+  toDTO(): DiagramElementDTO {
+    return super.toDTO();
   }
 }
 
@@ -87,14 +121,43 @@ export class FunctionElement implements DiagramElement {
   constructor(
     public name: string,
     public returnType: string,
-    public parameters: Parameter[]
+    public parameters: Parameter[] = []
   ) {}
+
+  toDTO(): DiagramElementDTO {
+    return {
+      id: nextId(),
+      kind: 'uml.' + this.kind,
+      name: this.name,
+      type: this.returnType,
+      parameters: getIfHasElements(this.parameters),
+    };
+  }
 }
 
 export class VariableElement implements DiagramElement {
   kind = 'Variable';
 
   constructor(public name: string, public type: string) {}
+
+  toDTO(): DiagramElementDTO {
+    return {
+      id: nextId(),
+      kind: 'uml.' + this.kind,
+      name: this.name,
+      type: this.type,
+    };
+  }
 }
 
 export type AccessModifier = 'public' | 'private' | 'protected';
+
+function getIfHasElements<T>(arr: T[]): T[] | undefined {
+  return arr.length ? arr : undefined;
+}
+
+let lastId = 0;
+
+function nextId() {
+  return (++lastId).toString();
+}

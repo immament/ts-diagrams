@@ -1,7 +1,5 @@
 import {
-  ClassDiagram,
   ClassDiagramExtractor,
-  ClassElement,
   FileSystemHost,
   InMemoryFileSystemHost,
 } from 'extractor';
@@ -23,7 +21,7 @@ export class DiagramBuilder {
 
     const diagram = diagramExtractor.extract({directory: diagramSrc});
 
-    return this.convert(diagram);
+    return diagram;
   }
 
   createDemo() {
@@ -58,23 +56,7 @@ export class DiagramBuilder {
 
     const diagram = diagramExtractor.extract({directory: 'test'});
 
-    return this.convert(diagram);
-  }
-
-  private convert(diagram: ClassDiagram): DiagramSkeleton {
-    return {
-      elements: diagram.getElements().map<SkeletonElement>(el => {
-        const cel = el as ClassElement;
-        return {
-          id: cel.kind,
-          name: cel.name,
-          type: 'uml.Class',
-          properties: cel.getProperties().map(p => `${p.name}: ${p.type}`),
-          methods: cel.getMethods().map(p => `${p.name}(): ${p.returnType}`),
-        };
-      }),
-      links: [],
-    };
+    return diagram;
   }
 }
 
