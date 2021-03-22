@@ -4,12 +4,12 @@ import {
   ClassDiagramDTO,
   DiagramElementDTO,
   LinkElementDTO,
-} from '../../../common/src';
+} from '../../../../common/src';
 
-export function sampleDiagram() {
-  const diagram = createDiagram();
+export function createSampleDiagramDTO() {
+  return createDiagram();
 
-  window.postMessage({command: 'diagram', diagram}, '*');
+  //window.postMessage({command: 'diagram', diagram}, '*');
 
   function createDiagram(): ClassDiagramDTO {
     return {

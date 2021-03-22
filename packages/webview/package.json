@@ -8,15 +8,17 @@
     "build": "node ./scripts/build-non-split.js ",
     "test": "react-scripts test --watchAll=false",
     "test:watch": "react-scripts test",
-    "lint": "eslint .",
-    "clean": "gts clean",
-    "fix": "eslint . --fix"
+    "fix": "eslint . --fix",
+    "lint": "eslint",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
     "@testing-library/dom": "^7.29.6",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "antd": "^4.14.0",
     "backbone": "^1.4.0",
     "dagre": "^0.8.5",
     "graphlib": "^2.1.8",
@@ -32,6 +34,12 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/node-logger": "^6.1.21",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.1.21",
     "@types/backbone": "^1.4.10",
     "@types/dagre": "^0.7.44",
     "@types/jest": "^26.0.15",
@@ -41,6 +49,7 @@
     "@types/node": "^14.11.2",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "gts": "^3.1.0",
     "typescript": "^4.2.3"
   },

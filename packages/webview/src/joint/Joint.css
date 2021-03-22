@@ -13,6 +13,10 @@
   overflow: auto;
 }
 
+.joint-layers {
+  outline: solid 3px blue;
+}
+
 .joint-theme-dark .joint-link path {
   stroke: #ffcc12;
   stroke-width: 1.5;

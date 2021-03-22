@@ -1,21 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import {ClassDiagramDTO} from '../../common/src';
+import React, {useEffect} from 'react';
+
 import './App.css';
-import Joint from './joint/Joint';
-import {listenMessages} from './listenMessages';
+import DiagramApp from './joint/DiagramApp';
+
+import 'antd/dist/antd.css';
+import {DiagramAppViewModelIml} from './joint/DiagramAppViewModelImpl';
+import {DiagramAppViewModel} from './joint/DiagramAppViewModel';
+import {DiagramDataSourceImpl} from './joint/DiagramDataSource';
 
 function App() {
-  const [diagram, setDiagram] = useState<ClassDiagramDTO | undefined>(
-    undefined
+  const viewModel: DiagramAppViewModel = new DiagramAppViewModelIml(
+    new DiagramDataSourceImpl()
   );
 
-  useEffect(() => {
-    listenMessages(diagram => setDiagram(diagram));
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
-      <Joint diagram={diagram}></Joint>
+      <DiagramApp viewModel={viewModel}></DiagramApp>
     </div>
   );
 }

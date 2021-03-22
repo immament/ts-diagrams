@@ -62,7 +62,7 @@ export class DiagramPanel {
   private createDiagram(diagramSrc?: string, files?: string) {
     const builder = new DiagramBuilder();
     const diagram = builder.create({diagramSrc, files});
-    console.log('postMessage:', diagram);
+    console.log('postMessage:', this.panel.webview.cspSource);
     this.panel.webview.postMessage({command: 'diagram', diagram});
     //setTimeout(() => this.panel.webview.postMessage({command: 'second'}), 2000);
   }

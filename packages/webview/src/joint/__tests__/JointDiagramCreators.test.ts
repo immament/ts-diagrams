@@ -1,17 +1,17 @@
 // eslint-disable-next-line node/no-unpublished-import
 import {AccessModifier, DiagramElementDTO} from '../../../../common/src';
-import {jointCreatorsMapper} from '../JointDiagramCreators';
-import {UmlClass, UmlInterface} from '../uml';
+import {jointCreatorsMapper} from '../jointDiagramCreators';
+import {UmlInterface} from '../uml';
 import {UmlFunction} from '../uml/UmlFunction';
 import {UmlVariable} from '../uml/UmlVariable';
 
 describe('JointDiagramCreators', () => {
-  describe.each(['Interface', 'Class', 'Abstract'])(`%s`, type => {
+  describe.each(['Interface', 'Class', 'Abstract'])('%s', type => {
     test.each<[AccessModifier, string]>([
       ['public', '+'],
       ['protected', '#'],
       ['private', '-'],
-    ])(`should translate access modifier %s => %s`, (input, exp) => {
+    ])('should translate access modifier %s => %s', (input, exp) => {
       const src: DiagramElementDTO = {
         id: '1',
         kind: `uml.${type}`,
@@ -69,49 +69,6 @@ describe('JointDiagramCreators', () => {
     expect(methods).toEqual(['+ setDateOfBirth(dob: Date): void']);
     const properties = jointElement.get('properties');
     expect(properties).toEqual(['+ dob1: Date', '- p2: string']);
-  });
-
-  test('should create joint diagram interface element', () => {
-    const src: DiagramElementDTO = {
-      id: '1',
-      kind: 'uml.Class',
-      name: 'Mammal2',
-      properties: [
-        {name: 'dob1', type: 'Date', accessModifier: 'public'},
-        {name: 'p2', type: 'string', accessModifier: 'private'},
-      ],
-      accessors: [
-        {name: 'acc1', type: 'Date', accessModifier: 'protected'},
-        {name: 'p4', type: 'string', accessModifier: 'private'},
-      ],
-      methods: [
-        {
-          name: 'setDateOfBirth',
-          accessModifier: 'protected',
-          parameters: [{name: 'dob', type: 'Date'}],
-          returnType: 'void',
-        },
-      ],
-    };
-
-    const jointElement = jointCreatorsMapper.element.get(src.kind)?.(
-      src
-    ) as UmlClass;
-
-    expect(jointElement).toBeDefined();
-
-    expect(jointElement.getClassName()).toEqual(['Mammal2']);
-
-    const methods = jointElement.get('methods');
-    expect(methods).toEqual(['# setDateOfBirth(dob: Date): void']);
-
-    const properties = jointElement.get('properties');
-    expect(properties).toEqual([
-      '+ dob1: Date',
-      '- p2: string',
-      '# acc1: Date',
-      '- p4: string',
-    ]);
   });
 
   test('should create joint diagram function element', () => {
