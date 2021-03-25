@@ -1,4 +1,4 @@
-import {ClassDiagramDTO, DiagramElementDTO} from '../../../common/src';
+import {ClassDiagramDTO, DiagramElementDTO} from 'common';
 
 export interface toDTO<T> {
   toDTO(): T;

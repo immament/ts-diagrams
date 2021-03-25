@@ -1,9 +1,11 @@
-// Disables code splitting into chunks
-// See https://github.com/facebook/create-react-app/issues/5306#issuecomment-433425838
-
+const path = require('path');
 const rewire = require('rewire');
 const defaults = rewire('react-scripts/scripts/build.js');
+
 const config = defaults.__get__('config');
+
+config.resolve.alias['common'] = path.resolve(__dirname, '../../common/src');
+console.log(config.resolve);
 
 config.optimization.splitChunks = {
   cacheGroups: {

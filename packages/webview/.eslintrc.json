@@ -1,6 +1,6 @@
 {
-  "extends": ["react-app", "react-app/jest", "../../.eslintrc.json"],
-  "rules": {
-    "node/no-unpublished-import": "off"
-  }
+  "extends": ["react-app", "react-app/jest", "../../.eslintrc.json"]
+  // "rules": {
+  //   "node/no-unpublished-import": "off"
+  // }
 }

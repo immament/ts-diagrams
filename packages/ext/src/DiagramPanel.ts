@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import {DiagramBuilder} from './diagram/DiagramBuilder';
+import {DiagramBuilderIml} from './diagram/DiagramBuilder';
 import {WebWiewResources} from './WebWiewResources';
 
 export class DiagramPanel {
@@ -60,7 +60,7 @@ export class DiagramPanel {
   }
 
   private createDiagram(diagramSrc?: string, files?: string) {
-    const builder = new DiagramBuilder();
+    const builder = new DiagramBuilderIml();
     const diagram = builder.create({diagramSrc, files});
     console.log('postMessage:', this.panel.webview.cspSource);
     this.panel.webview.postMessage({command: 'diagram', diagram});

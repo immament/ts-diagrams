@@ -1,4 +1,4 @@
-import {DiagramElementDTO} from '../../../../common/src';
+import {DiagramElementDTO} from 'common';
 import {
   ClassDiagram,
   ClassElement,

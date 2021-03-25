@@ -26,7 +26,7 @@ export class ReactWebWiewResources implements WebWiewResources {
     <link rel="stylesheet" type="text/css" href="${styleUri}">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource: https:; script-src ${
       webview.cspSource
-    }; style-src vscode-resource: 'unsafe-inline' http: https: data:;">
+    } 'nonce-${nonce}'; font-src data:; style-src vscode-resource: c http: https: data:;">
 
 		<title>Diagram</title>
     <base href="${webview.asWebviewUri(this.webViewBasePath)}/">
@@ -35,6 +35,11 @@ export class ReactWebWiewResources implements WebWiewResources {
     <noscript>You need to enable JavaScript to run this app.</noscript>    
     <div id="root"></div>
 		<script nonce="${nonce}" src="${scriptUri}"></script>
+    <script nonce="${nonce}"> 
+    window.onload = function() {
+      console.log('Container.getContainer', MyContainer.getContainer());
+    };
+  </script>
 </body>
 </html>`;
   }

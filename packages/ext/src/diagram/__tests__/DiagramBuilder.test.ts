@@ -1,12 +1,12 @@
 // eslint-disable-next-line node/no-unpublished-import
 import {expect} from 'chai';
-import {DiagramBuilder} from '../DiagramBuilder';
+import {DiagramBuilderDemo} from '../DiagramBuilderDemo';
 
 describe('DiagramBuilder', () => {
   it('should create diagram from memory', () => {
-    const builder = new DiagramBuilder();
+    const builder = new DiagramBuilderDemo();
 
-    const diagram = builder.createDemo();
+    const diagram = builder.create();
     expect(diagram.elements).length(3);
   });
 });
