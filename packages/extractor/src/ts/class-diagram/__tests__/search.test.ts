@@ -1,4 +1,4 @@
-import {initProject} from '../initProject';
+import {initProject} from '../../initProject';
 import {Searcher} from '../searcher';
 
 describe('Search', () => {

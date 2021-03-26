@@ -8,8 +8,8 @@ import {
   PropertyDeclaration,
   PropertySignature,
 } from 'ts-morph';
-import {AccessModifier, Method, Property} from '../result/ClassDiagram';
-import {getTypeText} from './ts-utils';
+import {AccessModifier, Method, Property} from '../../result/ClassDiagram';
+import {getTypeText} from '../utils/ts-utils';
 
 export class ClassLikeElementBuilder {
   constructor(

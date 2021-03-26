@@ -1,6 +1,6 @@
 import {ProjectOptions, SourceFile} from 'ts-morph';
+import {initProject, initProjectWithFiles} from '../../initProject';
 import {ClassDiagramBuilder} from '../ClassDiagramBuilder';
-import {initProject, initProjectWithFiles} from '../initProject';
 import {Searcher} from '../searcher';
 import {ClassDiagramTestWrapper} from './ClassDiagramTestWrapper';
 

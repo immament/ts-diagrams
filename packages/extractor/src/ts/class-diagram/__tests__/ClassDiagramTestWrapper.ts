@@ -5,7 +5,7 @@ import {
   DiagramElement,
   FunctionElement,
   VariableElement,
-} from '../../result/ClassDiagram';
+} from '../../../result/ClassDiagram';
 import {throwUndefined} from './utils';
 
 export class ClassDiagramTestWrapper {

@@ -1,12 +1,13 @@
+import {AccessModifier} from 'common';
 import {
   ClassDeclaration,
   GetAccessorDeclaration,
   ModifierableNode,
 } from 'ts-morph';
-import {AccessModifier, ClassElement} from '../result/ClassDiagram';
+import {ClassElement} from '../../result/ClassDiagram';
+import {getTypeText} from '../utils/ts-utils';
 import {ClassLikeElementBuilder} from './ClassLikeElementBuilder';
 import {ElementBuilder} from './ElementBuilder';
-import {getTypeText} from './ts-utils';
 
 export class ClassElementBuilder implements ElementBuilder {
   private classLikeElementBuilder = new ClassLikeElementBuilder(

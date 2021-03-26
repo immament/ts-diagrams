@@ -191,56 +191,6 @@
         "signature": "a4c5f5f9fce4de76ce5fd82a24678df83e49e259788df7c454bf4f7d24c861a9",
         "affectsGlobalScope": false
       },
-      "./src/ts/ts-utils.ts": {
-        "version": "1ba83237219625b0d4eb011db89dabbe3f5e29ccf7df3dc9f6cb9e2883b0ea15",
-        "signature": "bb1286342698b8354e6d8f515f55e4ef2fcc2fd5b583bba88683d040d36b2ed7",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassLikeElementBuilder.ts": {
-        "version": "3b91932af78ef3a701ce5c1e89e7246a93a0178fa08ac2e089a1c5397180c4cb",
-        "signature": "4e9df137363ff508e882c44f76dd83447201c63097e622f8c985d62cd8600729",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ElementBuilder.ts": {
-        "version": "4ad63099b61c4f40062e372d79bb8cf6d009c18faa945c2ed296f9fb43e07e7a",
-        "signature": "5093e1949aa6c791b776cb02e966a62d9e7269addf49f33d2cbf7820d78932fc",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassElementBuilder.ts": {
-        "version": "d6b5d6b10fc4fd43448e3556a10657aad8f364d9d181e3ba3c6543f099516a94",
-        "signature": "817aa8882685e67eac08576592a80565b9276fa7e3892aa10f679b70c7699498",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/FunctionElementBuilder.ts": {
-        "version": "329d609e9abb73293d6980b26299c9c9aa52575a3d1fc12361484193a47e4095",
-        "signature": "03108f2458c992f881fd5b4293d112cc0cc95fd615506ef58f5d28bf3e8308de",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/InterfaceElementBuilder.ts": {
-        "version": "a7c8489e0e31e38abf507cc718e49c979b3cc117846b72318599db656cc33960",
-        "signature": "870443af442c2d9b975ae69064f0077d2695a969b3af1bf1832513468a41de33",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/VariableElementBuilder.ts": {
-        "version": "aa4de42b54fc2f7e91c4811cf1553b9a9d53b1e131ce919fb3644c774e641d5f",
-        "signature": "9924abcbbb5a69de1699e4c2f84c238a4860c2d08e1b7497935b6fd1ec5ba890",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassDiagramBuilder.ts": {
-        "version": "e373bed4c78fb9f4802a5a7a392130f9063a6ef81b704766d91d568d530e7ecf",
-        "signature": "ec2949db511b84a30331cd1a267c204afdbaa74a7732462305bdc9a61c22acc3",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/searcher.ts": {
-        "version": "248586b5002dc0fd6e9e531fe723c99994f865e60e1c54e1111bfedf3a04c663",
-        "signature": "e995fd8dc54b8cec28c3d34230c4360520bf70d1c1a44187152cec7acaa0b917",
-        "affectsGlobalScope": false
-      },
-      "./src/ts/ClassDiagramExtractor.ts": {
-        "version": "468aeffcf45eb884e62872986534ff97ec6f37059ea25a76e43ce04abaaf3113",
-        "signature": "34be98153e72cc44a388b05d76eeed4e0be0dd93050d042f72b059f982433492",
-        "affectsGlobalScope": false
-      },
       "./src/index.ts": {
         "version": "23b8d5235a5887a145d74ff097440ff0f23c003894d58d36d986a11836473b51",
         "signature": "b42897d7bd9179acb9befb6c78e26d22b686fd676433559e7954e4f652d617f8",
@@ -251,9 +201,54 @@
         "signature": "6e3beb4968b398e54123a74ff9c22891f67ecaee58c0ebe623996ccdc384e937",
         "affectsGlobalScope": false
       },
-      "./src/test.ts": {
-        "version": "f13d082ebfdca53649b339c9ca974e7533627a332b613f5e502b81bbbb7835cf",
-        "signature": "840c92f75b4f40d6315b93dca5eb589ef63d0ce155e76129459657063f51944b",
+      "./src/ts/utils/ts-utils.ts": {
+        "version": "1ba83237219625b0d4eb011db89dabbe3f5e29ccf7df3dc9f6cb9e2883b0ea15",
+        "signature": "bb1286342698b8354e6d8f515f55e4ef2fcc2fd5b583bba88683d040d36b2ed7",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/ClassLikeElementBuilder.ts": {
+        "version": "0e2a679c0555ad95f14d20a5ce0d38dd6dee1cff0fa0a9c18e0db7741da0e436",
+        "signature": "16a76513151410b5f885c16cfa7deb1b75f45c64d20a731d9a44e132efb3fe91",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/ElementBuilder.ts": {
+        "version": "9862dd795a8409be052dadcffd519dfa680c6fd32e1b02720826ef4da7df35a3",
+        "signature": "27b7dd44365ea996c3b7788d39c183122e64df80144ac70bd424ef93a8a747e7",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/ClassElementBuilder.ts": {
+        "version": "9d08eda2d87045851b5ce613aaaf7aa212cc3ed36a8a4a59b4d449097d5930dc",
+        "signature": "7de85e6b7d40a9f36d3331d6bc695900df9531663f86c9b0f23adf8abafdf7e3",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/FunctionElementBuilder.ts": {
+        "version": "cb2dabcbbe5463d319bb0b618f9233658d6b5c608a8c12c68e9d34fd3b84da74",
+        "signature": "072cd16dcec1a699f3c9352a3443d2f76b1780827121b4cde7e87287a9965195",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/InterfaceElementBuilder.ts": {
+        "version": "10ab946773fc3297497931e377a27ada2aca079a51925ab7921a9fa40817f41b",
+        "signature": "fbfb8f68d4dfae517c61dd6f385c06c91039569932f6c9f64c232a0ac9479f79",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/VariableElementBuilder.ts": {
+        "version": "6897fb4289ea552930d9ec1b8173779d22817beb164a64b6cabc0e44955c2a24",
+        "signature": "460bd999056c090ebfab7cade29f9e600726de55580a7c4616a781332a8cb977",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/ClassDiagramBuilder.ts": {
+        "version": "22ffda60edce2480a1cde56abee162f9154f6d541883a90947e2c61a8bab6d39",
+        "signature": "2a74a51a657a671de53ba00d9605cbb1b7fc08be7ea77522ae8f8f1e65c797bc",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/searcher.ts": {
+        "version": "248586b5002dc0fd6e9e531fe723c99994f865e60e1c54e1111bfedf3a04c663",
+        "signature": "e995fd8dc54b8cec28c3d34230c4360520bf70d1c1a44187152cec7acaa0b917",
+        "affectsGlobalScope": false
+      },
+      "./src/ts/class-diagram/ClassDiagramExtractor.ts": {
+        "version": "468aeffcf45eb884e62872986534ff97ec6f37059ea25a76e43ce04abaaf3113",
+        "signature": "32330426157b91454df4b94d1fd360892a4d8a533e31d9422eb0a7f1edc5f97e",
         "affectsGlobalScope": false
       },
       "../../node_modules/@types/anymatch/index.d.ts": {
@@ -1128,16 +1123,13 @@
       }
     },
     "options": {
-      "baseUrl": "..",
+      "baseUrl": "./",
       "paths": {
-        "extractor": [
-          "extractor/src"
-        ],
         "common": [
-          "common/src"
+          "../common/src"
         ]
       },
-      "pathsBasePath": "/home/tofik-tuptus/Documents/android/ts-diagrams",
+      "pathsBasePath": "/home/tofik-tuptus/Documents/android/ts-diagrams/packages/extractor",
       "module": 1,
       "target": 2,
       "outDir": "./dist",
@@ -1155,6 +1147,7 @@
       "declaration": true,
       "rootDir": "./src",
       "composite": true,
+      "watch": true,
       "configFilePath": "./tsconfig.build.json"
     },
     "referencedMap": {
@@ -2702,8 +2695,7 @@
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassDiagramExtractor.ts"
+        "./src/result/ClassDiagram.ts"
       ],
       "./src/result/ClassDiagram.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
@@ -2711,83 +2703,84 @@
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../common/dist/index.d.ts"
       ],
-      "./src/test.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "./src/ts/initProject.ts"
-      ],
-      "./src/ts/ClassDiagramBuilder.ts": [
+      "./src/ts/class-diagram/ClassDiagramBuilder.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassElementBuilder.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/FunctionElementBuilder.ts",
-        "./src/ts/InterfaceElementBuilder.ts",
-        "./src/ts/VariableElementBuilder.ts"
+        "./src/ts/class-diagram/ClassElementBuilder.ts",
+        "./src/ts/class-diagram/ElementBuilder.ts",
+        "./src/ts/class-diagram/FunctionElementBuilder.ts",
+        "./src/ts/class-diagram/InterfaceElementBuilder.ts",
+        "./src/ts/class-diagram/VariableElementBuilder.ts"
       ],
-      "./src/ts/ClassDiagramExtractor.ts": [
+      "./src/ts/class-diagram/ClassDiagramExtractor.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/ts/ClassDiagramBuilder.ts",
-        "./src/ts/searcher.ts"
+        "./src/ts/class-diagram/ClassDiagramBuilder.ts",
+        "./src/ts/class-diagram/searcher.ts"
       ],
-      "./src/ts/ClassElementBuilder.ts": [
+      "./src/ts/class-diagram/ClassElementBuilder.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
+        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
+        "../common/dist/index.d.ts",
+        "./src/result/ClassDiagram.ts",
+        "./src/ts/class-diagram/ClassLikeElementBuilder.ts",
+        "./src/ts/class-diagram/ElementBuilder.ts",
+        "./src/ts/utils/ts-utils.ts"
+      ],
+      "./src/ts/class-diagram/ClassLikeElementBuilder.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassLikeElementBuilder.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/ts-utils.ts"
+        "./src/ts/utils/ts-utils.ts"
       ],
-      "./src/ts/ClassLikeElementBuilder.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts",
-        "./src/result/ClassDiagram.ts",
-        "./src/ts/ts-utils.ts"
-      ],
-      "./src/ts/ElementBuilder.ts": [
+      "./src/ts/class-diagram/ElementBuilder.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts"
       ],
-      "./src/ts/FunctionElementBuilder.ts": [
+      "./src/ts/class-diagram/FunctionElementBuilder.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/ts-utils.ts"
+        "./src/ts/class-diagram/ElementBuilder.ts",
+        "./src/ts/utils/ts-utils.ts"
       ],
-      "./src/ts/InterfaceElementBuilder.ts": [
+      "./src/ts/class-diagram/InterfaceElementBuilder.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ClassLikeElementBuilder.ts",
-        "./src/ts/ElementBuilder.ts"
+        "./src/ts/class-diagram/ClassLikeElementBuilder.ts",
+        "./src/ts/class-diagram/ElementBuilder.ts"
       ],
-      "./src/ts/VariableElementBuilder.ts": [
+      "./src/ts/class-diagram/VariableElementBuilder.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts",
-        "./src/ts/ts-utils.ts"
+        "./src/ts/class-diagram/ElementBuilder.ts",
+        "./src/ts/utils/ts-utils.ts"
+      ],
+      "./src/ts/class-diagram/searcher.ts": [
+        "../../node_modules/@types/jsdom/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
+        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
+        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
       ],
       "./src/ts/initProject.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
@@ -2795,13 +2788,7 @@
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
         "../../node_modules/ts-morph/lib/ts-morph.d.ts"
       ],
-      "./src/ts/searcher.ts": [
-        "../../node_modules/@types/jsdom/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
-        "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
-      ],
-      "./src/ts/ts-utils.ts": [
+      "./src/ts/utils/ts-utils.ts": [
         "../../node_modules/@types/jsdom/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.4/index.d.ts",
         "../../node_modules/@types/jsdom/ts3.5/index.d.ts",
@@ -4356,53 +4343,51 @@
       "./src/result/ClassDiagram.ts": [
         "../common/dist/index.d.ts"
       ],
-      "./src/test.ts": [
-        "./src/ts/initProject.ts"
-      ],
-      "./src/ts/ClassDiagramBuilder.ts": [
+      "./src/ts/class-diagram/ClassDiagramBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts"
       ],
-      "./src/ts/ClassDiagramExtractor.ts": [
+      "./src/ts/class-diagram/ClassDiagramExtractor.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "../common/dist/index.d.ts"
       ],
-      "./src/ts/ClassElementBuilder.ts": [
+      "./src/ts/class-diagram/ClassElementBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
+        "../common/dist/index.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
+        "./src/ts/class-diagram/ElementBuilder.ts"
       ],
-      "./src/ts/ClassLikeElementBuilder.ts": [
+      "./src/ts/class-diagram/ClassLikeElementBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts"
       ],
-      "./src/ts/ElementBuilder.ts": [
+      "./src/ts/class-diagram/ElementBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts"
       ],
-      "./src/ts/FunctionElementBuilder.ts": [
+      "./src/ts/class-diagram/FunctionElementBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
+        "./src/ts/class-diagram/ElementBuilder.ts"
       ],
-      "./src/ts/InterfaceElementBuilder.ts": [
+      "./src/ts/class-diagram/InterfaceElementBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
+        "./src/ts/class-diagram/ElementBuilder.ts"
       ],
-      "./src/ts/VariableElementBuilder.ts": [
+      "./src/ts/class-diagram/VariableElementBuilder.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts",
         "./src/result/ClassDiagram.ts",
-        "./src/ts/ElementBuilder.ts"
+        "./src/ts/class-diagram/ElementBuilder.ts"
+      ],
+      "./src/ts/class-diagram/searcher.ts": [
+        "../../node_modules/@ts-morph/common/lib/typescript.d.ts",
+        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
       ],
       "./src/ts/initProject.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts"
       ],
-      "./src/ts/searcher.ts": [
-        "../../node_modules/@ts-morph/common/lib/typescript.d.ts",
-        "../../node_modules/ts-morph/lib/ts-morph.d.ts"
-      ],
-      "./src/ts/ts-utils.ts": [
+      "./src/ts/utils/ts-utils.ts": [
         "../../node_modules/ts-morph/lib/ts-morph.d.ts"
       ]
     },
@@ -4618,20 +4603,105 @@
       "../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../common/dist/ClassDiagram.d.ts",
       "../common/dist/index.d.ts",
-      "./src/index.ts",
+      [
+        "./src/index.ts",
+        [
+          {
+            "file": "./src/index.ts",
+            "start": 165,
+            "length": 28,
+            "messageText": "Cannot find module './ts/ClassDiagramExtractor' or its corresponding type declarations.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ],
       "./src/result/ClassDiagram.ts",
-      "./src/test.ts",
-      "./src/ts/ClassDiagramBuilder.ts",
-      "./src/ts/ClassDiagramExtractor.ts",
-      "./src/ts/ClassElementBuilder.ts",
-      "./src/ts/ClassLikeElementBuilder.ts",
-      "./src/ts/ElementBuilder.ts",
-      "./src/ts/FunctionElementBuilder.ts",
-      "./src/ts/InterfaceElementBuilder.ts",
-      "./src/ts/VariableElementBuilder.ts",
+      "./src/ts/class-diagram/ClassDiagramBuilder.ts",
+      "./src/ts/class-diagram/ClassDiagramExtractor.ts",
+      "./src/ts/class-diagram/ClassElementBuilder.ts",
+      "./src/ts/class-diagram/ClassLikeElementBuilder.ts",
+      "./src/ts/class-diagram/ElementBuilder.ts",
+      "./src/ts/class-diagram/FunctionElementBuilder.ts",
+      "./src/ts/class-diagram/InterfaceElementBuilder.ts",
+      "./src/ts/class-diagram/VariableElementBuilder.ts",
+      "./src/ts/class-diagram/searcher.ts",
       "./src/ts/initProject.ts",
-      "./src/ts/searcher.ts",
-      "./src/ts/ts-utils.ts"
+      "./src/ts/utils/ts-utils.ts"
+    ],
+    "affectedFilesPendingEmit": [
+      [
+        "../common/dist/ClassDiagram.d.ts",
+        1
+      ],
+      [
+        "../common/dist/index.d.ts",
+        1
+      ],
+      [
+        "./src/index.ts",
+        1
+      ],
+      [
+        "./src/result/ClassDiagram.ts",
+        1
+      ],
+      [
+        "./src/ts/FunctionElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/InterfaceElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/VariableElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/ClassDiagramBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/ClassDiagramExtractor.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/ClassElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/ClassLikeElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/ElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/FunctionElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/InterfaceElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/VariableElementBuilder.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/searcher.ts",
+        1
+      ],
+      [
+        "./src/ts/class-diagram/ts-utils.ts",
+        1
+      ],
+      [
+        "./src/ts/utils/ts-utils.ts",
+        1
+      ]
     ]
   },
   "version": "4.2.3"

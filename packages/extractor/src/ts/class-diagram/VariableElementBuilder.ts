@@ -1,7 +1,7 @@
+import {VariableElement} from 'src/result/ClassDiagram';
 import {VariableDeclaration} from 'ts-morph';
-import {VariableElement} from '../result/ClassDiagram';
+import {getTypeText} from '../utils/ts-utils';
 import {ElementBuilder} from './ElementBuilder';
-import {getTypeText} from './ts-utils';
 
 export class VariableElementBuilder implements ElementBuilder {
   create(declaration: VariableDeclaration): VariableElement {

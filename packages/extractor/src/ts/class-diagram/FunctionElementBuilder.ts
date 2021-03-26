@@ -1,7 +1,7 @@
 import {FunctionDeclaration, ParameteredNode} from 'ts-morph';
-import {FunctionElement} from '../result/ClassDiagram';
+import {FunctionElement} from '../../result/ClassDiagram';
+import {getTypeText} from '../utils/ts-utils';
 import {ElementBuilder} from './ElementBuilder';
-import {getTypeText} from './ts-utils';
 
 export class FunctionElementBuilder implements ElementBuilder {
   create(declaration: FunctionDeclaration): FunctionElement {
