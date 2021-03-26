@@ -4,7 +4,7 @@ import './Joint.css';
 
 import 'jointjs/dist/joint.css';
 import {createDiagram, JoindClassDiagram} from './createDiagram';
-import {ClassDiagramDTO} from '../../../../common/src';
+import {ClassDiagramDTO} from 'common';
 
 function Joint({diagram}: {diagram?: ClassDiagramDTO}) {
   const el = React.createRef<HTMLDivElement>();

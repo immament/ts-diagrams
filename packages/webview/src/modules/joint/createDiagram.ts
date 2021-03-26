@@ -88,10 +88,6 @@ export class JoindClassDiagram {
     return new joint.dia.Graph();
   }
 
-  private register(items: joint.dia.Cell[]) {
-    this.graph?.addCell(items);
-  }
-
   private listenSizeChange() {
     this.resizeObserver = new ResizeObserver(
       debounce(() => this.resizeWrapper(), 500)

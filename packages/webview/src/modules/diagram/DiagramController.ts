@@ -8,6 +8,6 @@ export class DiagramController {
   }
 
   onRefreshClick() {
-    console.log('DiagramController.onRefreshClick');
+    this.showDiagram.refresh();
   }
 }

@@ -4,7 +4,8 @@ import {DiagramDataSource} from '../repository/DiagramDataSource';
 export class DiagramDataSourceMock implements DiagramDataSource {
   private dataChangedCallback?: (diagram?: ClassDiagramDTO) => void;
 
-  refresh(): void {}
+  refresh = jest.fn();
+
   dataChanged(cb: (diagram?: ClassDiagramDTO) => void): void {
     this.dataChangedCallback = cb;
   }

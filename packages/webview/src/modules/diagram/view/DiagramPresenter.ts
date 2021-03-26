@@ -1,15 +1,15 @@
 import {ClassDiagramDTO} from 'common';
 import BaseView from '../../../common/BaseView';
-import {DiagramAppViewModelIml} from './DiagramAppViewModelImpl';
+import {DiagramAppViewModel} from './DiagramAppViewModel';
 
 export class DiagramPresenter {
-  private baseView?: BaseView<DiagramAppViewModelIml>;
+  private baseView?: BaseView<DiagramAppViewModel>;
 
   show({diagram}: {diagram?: ClassDiagramDTO}): void {
-    this.baseView?.onViewModelChanged(new DiagramAppViewModelIml(diagram));
+    this.baseView?.onViewModelChanged({diagram});
   }
 
-  attachView = (baseView: BaseView<DiagramAppViewModelIml>): void => {
+  attachView = (baseView: BaseView<DiagramAppViewModel>): void => {
     this.baseView = baseView;
   };
 

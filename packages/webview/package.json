@@ -69,6 +69,10 @@
   "jest": {
     "testMatch": [
       "**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "coveragePathIgnorePatterns": [
+      ".stories.tsx",
+      "tests-utils"
     ]
   }
 }

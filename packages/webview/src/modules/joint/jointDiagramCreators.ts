@@ -13,11 +13,15 @@ import {
   DiagramElementCreator,
   DiagramLinkCreator,
 } from '../diagram/factory/DiagramFactory';
-import {UmlAbstract, UmlClass, UmlInterface} from './uml';
-import {DirectedAssociation} from './uml/DirectedAssociation';
-import {UmlFunction} from './uml/UmlFunction';
-import {UmlUnknown} from './uml/UmlUnknown';
-import {UmlVariable} from './uml/UmlVariable';
+import {
+  DirectedAssociation,
+  UmlAbstract,
+  UmlClass,
+  UmlFunction,
+  UmlInterface,
+  UmlUnknown,
+  UmlVariable,
+} from './uml';
 
 type BaseType = joint.shapes.basic.Generic;
 type LinkBaseType = joint.dia.Link;
@@ -36,109 +40,125 @@ interface LinkConstructor {
   ): joint.dia.Link;
 }
 
-function accessModifierToString(accessModifier: AccessModifier): string {
-  switch (accessModifier) {
-    case 'public':
-      return '+';
-    case 'protected':
-      return '#';
-    case 'private':
-      return '-';
+class JointCreator {
+  private creatorsMapper: Creators<BaseType, LinkBaseType> = {
+    element: new Map<string, DiagramElementCreator<BaseType>>([
+      ['uml.Class', this.umlClassCreator(UmlClass)],
+      ['uml.Interface', this.umlClassCreator(UmlInterface)],
+      ['uml.Abstract', this.umlClassCreator(UmlAbstract)],
+      ['uml.Function', this.umlFunctionCreator()],
+      ['uml.Variable', this.umlVariableCreator()],
+    ]),
+    defaultElement: this.umlClassCreator(UmlUnknown),
+    link: new Map<string, DiagramLinkCreator<LinkBaseType, BaseType>>([
+      [
+        'uml.Generalization',
+        this.umlLinkCreator(joint.shapes.uml.Generalization),
+      ],
+      ['uml.Aggregation', this.umlLinkCreator(joint.shapes.uml.Aggregation)],
+      ['uml.Composition', this.umlLinkCreator(joint.shapes.uml.Composition)],
+      ['uml.Association', this.umlLinkCreator(DirectedAssociation)],
+    ]),
+    defaultLink: this.umlLinkCreator(joint.dia.Link),
+  };
+
+  getCreatorsMapper() {
+    return this.creatorsMapper;
+  }
+
+  private umlClassCreator(
+    ctor: UmlClassConstructor
+  ): DiagramElementCreator<BaseType> {
+    return element => {
+      return new ctor({
+        name: [element.name],
+        properties: [
+          ...(element.properties?.map(p => this.propertyText(p)) ?? []),
+          ...(element.accessors?.map(a => this.propertyText(a)) ?? []),
+        ],
+        methods: element.methods?.map(m => this.methodText(m)),
+      });
+    };
+  }
+
+  private umlFunctionCreator(): DiagramElementCreator<BaseType> {
+    return element => {
+      return new UmlFunction({
+        name: [
+          `${element.name}(${this.parametersText(element.parameters ?? [])}): ${
+            element.type
+          }`,
+        ],
+      });
+    };
+  }
+
+  private umlVariableCreator(): DiagramElementCreator<BaseType> {
+    return element => {
+      return new UmlVariable({
+        name: [`${element.name}: ${element.type}`],
+      });
+    };
+  }
+
+  private methodText(m: Method): string {
+    return `${this.accessModifierToString(m.accessModifier)} ${
+      m.name
+    }(${this.parametersText(m.parameters)}): ${m.returnType}`;
+  }
+
+  private propertyText(p: Property | Accessor) {
+    return `${this.accessModifierToString(p.accessModifier)} ${p.name}: ${
+      p.type
+    }`;
+  }
+
+  private accessModifierToString(accessModifier: AccessModifier): string {
+    switch (accessModifier) {
+      case 'public':
+        return '+';
+      case 'protected':
+        return '#';
+      case 'private':
+        return '-';
+    }
+  }
+
+  private parametersText(params: Parameter[]): string {
+    return params.map(p => `${p.name}: ${p.type}`).join(',');
+  }
+
+  private umlLinkCreator(
+    ctor: LinkConstructor
+  ): DiagramLinkCreator<LinkBaseType, BaseType> {
+    return (link: LinkElementDTO, idsToElement: Map<string, BaseType>) => {
+      const fromElement = idsToElement.get(link.fromId);
+      const toElement = idsToElement.get(link.toId);
+      return new ctor({
+        source: {
+          id: fromElement?.id,
+          // linkAnchor: {
+          //   name: 'connectionLength',
+          //   args: {
+          //     length: 40,
+          //   },
+          // },
+        },
+        target: {
+          id: toElement?.id,
+          // linkAnchor: {
+          //   name: 'connectionLength',
+          //   args: {
+          //     length: 40,
+          //   },
+          // },
+        },
+      });
+    };
   }
 }
 
-function umlClassCreator(
-  ctor: UmlClassConstructor
-): DiagramElementCreator<BaseType> {
-  return element => {
-    return new ctor({
-      name: [element.name],
-      properties: [
-        ...(element.properties?.map(propertyText) ?? []),
-        ...(element.accessors?.map(propertyText) ?? []),
-      ],
-      methods: element.methods?.map(methodText),
-    });
-  };
-}
-
-function umlFunctionCreator(): DiagramElementCreator<BaseType> {
-  return element => {
-    return new UmlFunction({
-      name: [
-        `${element.name}(${parametersText(element.parameters ?? [])}): ${
-          element.type
-        }`,
-      ],
-    });
-  };
-}
-
-function umlVariableCreator(): DiagramElementCreator<BaseType> {
-  return element => {
-    return new UmlVariable({
-      name: [`${element.name}: ${element.type}`],
-    });
-  };
-}
-
-function methodText(m: Method): string {
-  return `${accessModifierToString(m.accessModifier)} ${
-    m.name
-  }(${parametersText(m.parameters)}): ${m.returnType}`;
-}
-
-function propertyText(p: Property | Accessor) {
-  return `${accessModifierToString(p.accessModifier)} ${p.name}: ${p.type}`;
-}
-
-function parametersText(params: Parameter[]): string {
-  return params.map(p => `${p.name}: ${p.type}`).join(',');
-}
-
-function umlLinkCreator(
-  ctor: LinkConstructor
-): DiagramLinkCreator<LinkBaseType, BaseType> {
-  return (link: LinkElementDTO, idsToElement: Map<string, BaseType>) => {
-    const fromElement = idsToElement.get(link.fromId);
-    const toElement = idsToElement.get(link.toId);
-    return new ctor({
-      source: {
-        id: fromElement?.id,
-        // linkAnchor: {
-        //   name: 'connectionLength',
-        //   args: {
-        //     length: 40,
-        //   },
-        // },
-      },
-      target: {
-        id: toElement?.id,
-        // linkAnchor: {
-        //   name: 'connectionLength',
-        //   args: {
-        //     length: 40,
-        //   },
-        // },
-      },
-    });
-  };
-}
-
-export const jointCreatorsMapper: Creators<BaseType, LinkBaseType> = {
-  element: new Map<string, DiagramElementCreator<BaseType>>([
-    ['uml.Class', umlClassCreator(UmlClass)],
-    ['uml.Interface', umlClassCreator(UmlInterface)],
-    ['uml.Abstract', umlClassCreator(UmlAbstract)],
-    ['uml.Function', umlFunctionCreator()],
-    ['uml.Variable', umlVariableCreator()],
-  ]),
-  defaultElement: umlClassCreator(UmlUnknown),
-  link: new Map<string, DiagramLinkCreator<LinkBaseType, BaseType>>([
-    ['uml.Generalization', umlLinkCreator(joint.shapes.uml.Generalization)],
-    ['uml.Aggregation', umlLinkCreator(joint.shapes.uml.Aggregation)],
-    ['uml.Composition', umlLinkCreator(joint.shapes.uml.Composition)],
-    ['uml.Association', umlLinkCreator(DirectedAssociation)],
-  ]),
-  defaultLink: umlLinkCreator(joint.dia.Link),
-};
+export const jointCreatorsMapper: Creators<
+  BaseType,
+  LinkBaseType
+> = new JointCreator().getCreatorsMapper();
