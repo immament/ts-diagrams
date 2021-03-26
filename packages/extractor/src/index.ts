@@ -3,4 +3,4 @@ export * from './result/ClassDiagram';
 export {
   ClassDiagramExtractor,
   ExtractorOptions,
-} from './ts/ClassDiagramExtractor';
+} from './ts/class-diagram/ClassDiagramExtractor';
