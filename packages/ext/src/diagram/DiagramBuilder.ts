@@ -17,7 +17,7 @@ export class DiagramBuilderIml implements DiagramBuilder {
       {
         skipLoadingLibFiles: true,
       },
-      {diagramSrc, files}
+      {includeFilesFromDir: diagramSrc, filesPattern: files}
     );
 
     const diagram = diagramExtractor.extract({directory: diagramSrc});

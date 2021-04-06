@@ -33,7 +33,7 @@ export class DiagramBuilderDemo implements DiagramBuilder {
         tsConfigFilePath: 'tsconfig.json',
         //skipAddingFilesFromTsConfig: true,
       },
-      {diagramSrc: '.'}
+      {includeFilesFromDir: '.'}
     );
 
     const diagram = diagramExtractor.extract({directory: 'test'});

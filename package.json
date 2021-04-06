@@ -11,6 +11,7 @@
     "ext:test-compile": "yarn workspace ext test-compile",
     "ext:test-watch": "yarn workspace ext test-watch",
     "extractor": "yarn workspace extractor",
+    "extractor:test": "yarn extractor test",
     "web": "yarn workspace webview",
     "web:build": "yarn workspace webview build && yarn web:move",
     "web:move": "cd packages && rm -rf ext/dist/web && mkdir -p ext/dist && mv webview/build ext/dist/web",

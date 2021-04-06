@@ -15,5 +15,8 @@
     "titleBar.inactiveBackground": "#2a465d99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#2a465d"
+  "peacock.color": "#2a465d",
+  "jest.autoEnable": false,
+  "jest.enableInlineErrorMessages": true,
+  "jest.rootPath": "packages/extractor"
 }
