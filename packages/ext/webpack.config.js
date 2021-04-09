@@ -35,6 +35,7 @@ const config = {
           loader: 'ts-loader',
           options: {
             projectReferences: true,
+            transpileOnly: false,
             configFile: 'tsconfig.build.json',
           },
         },

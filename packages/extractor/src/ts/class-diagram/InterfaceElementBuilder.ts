@@ -1,5 +1,5 @@
+import {AccessModifier, InterfaceElement} from '@common/ClassDiagram';
 import {InterfaceDeclaration} from 'ts-morph';
-import {AccessModifier, InterfaceElement} from '../../result/ClassDiagram';
 import {ClassLikeElementBuilder} from './ClassLikeElementBuilder';
 import {ElementBuilder} from './ElementBuilder';
 

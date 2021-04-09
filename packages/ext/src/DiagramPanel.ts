@@ -1,9 +1,8 @@
 import * as vscode from 'vscode';
-import {DiagramBuilderIml} from './diagram/DiagramBuilder';
+import {DiagramBuilderImpl} from './diagram/DiagramBuilder';
 import {WebWiewResources} from './WebWiewResources';
 
 export class DiagramPanel {
-  public test?: string;
   private panel: vscode.WebviewPanel;
 
   private disposables: vscode.Disposable[] = [];
@@ -15,9 +14,8 @@ export class DiagramPanel {
   ) {
     this.panel = this.createWebviewPanel();
     this.panel.webview.html = this.tryGetWebViewContent();
-    this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
+    this.panel.onDidDispose(() => this.dispose());
     this.createDiagram(diagramSrc, files);
-    if (diagramSrc) this.disposables.push(this.watch(diagramSrc, files));
   }
 
   getWebViewPanel() {
@@ -45,36 +43,21 @@ export class DiagramPanel {
     );
   }
 
-  watch(path?: string, files?: string): vscode.Disposable {
-    const fileSystemWatcher = vscode.workspace.createFileSystemWatcher(
-      path + (files ?? '/**/*.ts')
-    );
-    fileSystemWatcher.onDidChange(() => this.onResourceChange());
-    fileSystemWatcher.onDidCreate(() => this.onResourceChange());
-    fileSystemWatcher.onDidDelete(() => this.onResourceChange());
-    return fileSystemWatcher;
-  }
-
-  private onResourceChange() {
-    this.createDiagram(this.diagramSrc);
-  }
-
   private createDiagram(diagramSrc?: string, files?: string) {
-    const builder = new DiagramBuilderIml();
-    const diagram = builder.create({diagramSrc, files});
-    console.log('postMessage:', this.panel.webview.cspSource);
-    this.panel.webview.postMessage({command: 'diagram', diagram});
-    //setTimeout(() => this.panel.webview.postMessage({command: 'second'}), 2000);
+    const builder = new DiagramBuilderImpl();
+    const diagramStream = builder.create({diagramSrc, files});
+
+    const subs = diagramStream.diagrams$.subscribe(diagram => {
+      console.log('postMessage', diagram);
+      this.panel.webview.postMessage({command: 'diagram', diagram});
+    });
+
+    this.disposables.push(new vscode.Disposable(() => subs.unsubscribe()));
   }
 
-  public dispose() {
-    this.panel?.dispose();
-
+  dispose() {
     while (this.disposables.length) {
-      const x = this.disposables.pop();
-      if (x) {
-        x.dispose();
-      }
+      this.disposables.pop()?.dispose();
     }
   }
 }

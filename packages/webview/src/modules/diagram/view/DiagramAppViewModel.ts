@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import {ClassDiagramDTO} from 'common';
 import {BaseViewModel} from '../../../common/BaseViewModel';
 

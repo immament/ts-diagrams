@@ -1,3 +1,4 @@
+import {AccessModifier, Method, Property} from '@common/ClassDiagram';
 import {
   ClassDeclaration,
   InterfaceDeclaration,
@@ -8,7 +9,6 @@ import {
   PropertyDeclaration,
   PropertySignature,
 } from 'ts-morph';
-import {AccessModifier, Method, Property} from '../../result/ClassDiagram';
 import {getTypeText} from '../utils/ts-utils';
 
 export class ClassLikeElementBuilder {

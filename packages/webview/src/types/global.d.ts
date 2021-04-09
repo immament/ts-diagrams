@@ -1,9 +1,9 @@
-import MyContainer from '../common/MyContainer';
+import {ServiceContainer} from '../common/ServiceContainer';
 
 declare global {
   namespace NodeJS {
     interface Global {
-      MyContainer: MyContainer;
+      ServiceContainer: ServiceContainer;
     }
   }
 }

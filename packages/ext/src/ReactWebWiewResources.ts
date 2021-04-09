@@ -37,7 +37,7 @@ export class ReactWebWiewResources implements WebWiewResources {
 		<script nonce="${nonce}" src="${scriptUri}"></script>
     <script nonce="${nonce}"> 
     window.onload = function() {
-      console.log('Container.getContainer', MyContainer.getContainer());
+      console.log('Container.getContainer', ServiceContainer.getContainer());
     };
   </script>
 </body>

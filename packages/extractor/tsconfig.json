@@ -13,9 +13,12 @@
     "noUnusedParameters": true,
     "noEmit": true,
     "baseUrl": ".",
+    "rootDir": "src",
     "paths": {
-      "common": ["../common/src"]
-    }
+      "common": ["../common/src"],
+      "@common/*": ["src/common/*"]
+    },
+    "composite": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

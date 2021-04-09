@@ -36,8 +36,6 @@ export class DiagramBuilderDemo implements DiagramBuilder {
       {includeFilesFromDir: '.'}
     );
 
-    const diagram = diagramExtractor.extract({directory: 'test'});
-
-    return diagram;
+    return diagramExtractor.extract({directory: 'test'});
   }
 }

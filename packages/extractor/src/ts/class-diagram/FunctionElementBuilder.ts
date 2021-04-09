@@ -1,5 +1,5 @@
+import {FunctionElement} from '@common/ClassDiagram';
 import {FunctionDeclaration, ParameteredNode} from 'ts-morph';
-import {FunctionElement} from '../../result/ClassDiagram';
 import {getTypeText} from '../utils/ts-utils';
 import {ElementBuilder} from './ElementBuilder';
 

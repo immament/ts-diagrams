@@ -8,6 +8,11 @@ import {Searcher} from './searcher';
 
 export type ExtractorOptions = ProjectOptions;
 
+export type DiagramStream = {
+  diagrams$: Observable<ClassDiagramDTO>;
+  close: () => void;
+};
+
 export class ClassDiagramExtractor {
   private searcher = new Searcher();
   private builder = new ClassDiagramBuilder();
@@ -26,7 +31,7 @@ export class ClassDiagramExtractor {
   }: {
     directory?: string;
     watchOff?: boolean;
-  }): {diagrams$: Observable<ClassDiagramDTO>; close: () => void} {
+  }): DiagramStream {
     const watcher = this.createTsProjectWatcher(
       this.opt,
       directory,

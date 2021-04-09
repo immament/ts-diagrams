@@ -1,4 +1,4 @@
-export class MyContainer {
+export class ServiceContainer {
   private types = new Map<string, unknown>();
 
   get<T>(key: string): T | undefined {
@@ -16,6 +16,7 @@ export class MyContainer {
   }
 }
 
-const myContainer = (global.MyContainer = new MyContainer());
+const serviceContainer =
+  global.ServiceContainer ?? (global.ServiceContainer = new ServiceContainer());
 
-export default myContainer;
+export default serviceContainer;

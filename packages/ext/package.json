@@ -10,7 +10,7 @@
     "compile": "webpack",
     "watch": "webpack --watch",
     "tsc-compile": "tsc -b tsconfig.build.json",
-    "tsc-watch": "tsc -b tsconfig.build.json --watch",
+    "tsc-watch": "yarn tsc-compile --watch",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:vscode": "node ./out/test/vscode/runTest.js",
@@ -22,7 +22,7 @@
     "package": "webpack --mode production --devtool hidden-source-map"
   },
   "engines": {
-    "vscode": "1.54.3"
+    "vscode": "1.55.0"
   },
   "categories": [
     "Other"
@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "extractor": "^0.0.1",
-    "jest-standard-reporter": "^2.0.0"
+    "jest-standard-reporter": "^2.0.0",
+    "rxjs": "^6.6.7"
   }
 }

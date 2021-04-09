@@ -1,6 +1,7 @@
 export {FileSystemHost, InMemoryFileSystemHost} from 'ts-morph';
-export * from './result/ClassDiagram';
+export * from './common/ClassDiagram';
 export {
   ClassDiagramExtractor,
+  DiagramStream,
   ExtractorOptions,
 } from './ts/class-diagram/ClassDiagramExtractor';

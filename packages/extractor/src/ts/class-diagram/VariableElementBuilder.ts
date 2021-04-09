@@ -1,4 +1,4 @@
-import {VariableElement} from 'src/result/ClassDiagram';
+import {VariableElement} from '@common/ClassDiagram';
 import {VariableDeclaration} from 'ts-morph';
 import {getTypeText} from '../utils/ts-utils';
 import {ElementBuilder} from './ElementBuilder';

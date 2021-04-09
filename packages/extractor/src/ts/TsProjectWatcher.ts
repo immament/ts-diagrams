@@ -1,7 +1,7 @@
+import {IDisposable} from '@common/IDisposable';
 import * as chokidar from 'chokidar';
 import * as path from 'path';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IDisposable} from 'src/common/IDisposable';
 import {Project, ProjectOptions} from 'ts-morph';
 
 export type EventType =

@@ -72,7 +72,8 @@
     ],
     "coveragePathIgnorePatterns": [
       ".stories.tsx",
-      "tests-utils"
+      "tests-utils",
+      "index.ts"
     ]
   }
 }

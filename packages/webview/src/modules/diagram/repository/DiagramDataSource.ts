@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import {ClassDiagramDTO} from 'common';
 
 export interface DiagramDataSource {

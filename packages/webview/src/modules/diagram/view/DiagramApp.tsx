@@ -1,6 +1,6 @@
 import {Button, PageHeader} from 'antd';
-import React, {useEffect, useState} from 'react';
-import myContainer from '../../../common/MyContainer';
+import React from 'react';
+import serviceContainer from '../../../common/ServiceContainer';
 import {VscodeDiagramDataSourceImpl} from '../../../data/VscodeDiagramDataSource';
 import Joint from '../../joint/Joint';
 import {DiagramController} from '../DiagramController';
@@ -8,11 +8,15 @@ import {ShowDiagramInteractor} from '../interactors/ShowDiagram';
 import {DiagramDataSource} from '../repository/DiagramDataSource';
 import {DiagramAppViewModel} from './DiagramAppViewModel';
 import {DiagramPresenter} from './DiagramPresenter';
+import {BaseComponentProps, withSubscription} from './withSubscription';
 
-export type DiagramAppProps = {
-  viewModel: DiagramAppViewModel;
-  controller: DiagramController;
-};
+// TODO: move to bootstrap
+serviceContainer.set('DiagramDataSource', new VscodeDiagramDataSourceImpl());
+
+export type DiagramAppProps = BaseComponentProps<
+  DiagramAppViewModel,
+  DiagramController
+>;
 
 export function DiagramAppComponent({viewModel, controller}: DiagramAppProps) {
   return (
@@ -32,35 +36,10 @@ export function DiagramAppComponent({viewModel, controller}: DiagramAppProps) {
   );
 }
 
-export default withSubscription(DiagramAppComponent);
-
-function withSubscription(Component: (props: DiagramAppProps) => JSX.Element) {
-  return function () {
-    const [viewModel, setViewModel] = useState<DiagramAppViewModel>({});
-    const [controller] = useState<DiagramController>(createController());
-
-    useEffect(() => {
-      const presenter = controller.getPresenter();
-
-      presenter.attachView({
-        onViewModelChanged: viewModel => setViewModel(viewModel),
-      });
-
-      return () => {
-        presenter.detachView();
-      };
-    }, [controller]);
-
-    return (
-      <Component viewModel={viewModel} controller={controller}></Component>
-    );
-  };
-}
-
-myContainer.set('DiagramDataSource', new VscodeDiagramDataSourceImpl());
+export default withSubscription(DiagramAppComponent, createController());
 
 function createController() {
-  const diagramDataSource = myContainer.getOrThrow<DiagramDataSource>(
+  const diagramDataSource = serviceContainer.getOrThrow<DiagramDataSource>(
     'DiagramDataSource'
   );
 

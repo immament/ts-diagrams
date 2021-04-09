@@ -1,5 +1,5 @@
+import {ClassDiagram, ClassLikeElement} from '@common/ClassDiagram';
 import {Node, ts} from 'ts-morph';
-import {ClassDiagram, ClassLikeElement} from '../../result/ClassDiagram';
 import {ClassElementBuilder} from './ClassElementBuilder';
 import {ElementBuilder} from './ElementBuilder';
 import {FunctionElementBuilder} from './FunctionElementBuilder';

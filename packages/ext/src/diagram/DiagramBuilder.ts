@@ -1,11 +1,10 @@
-import {ClassDiagramDTO} from 'common';
-import {ClassDiagramExtractor} from 'extractor';
+import {ClassDiagramExtractor, DiagramStream} from 'extractor';
 
 export interface DiagramBuilder {
-  create(opt: {diagramSrc?: string; files?: string}): ClassDiagramDTO;
+  create(opt: {diagramSrc?: string; files?: string}): DiagramStream;
 }
 
-export class DiagramBuilderIml implements DiagramBuilder {
+export class DiagramBuilderImpl implements DiagramBuilder {
   create({
     diagramSrc,
     files,
@@ -20,8 +19,8 @@ export class DiagramBuilderIml implements DiagramBuilder {
       {includeFilesFromDir: diagramSrc, filesPattern: files}
     );
 
-    const diagram = diagramExtractor.extract({directory: diagramSrc});
+    const diagramStream = diagramExtractor.extract({directory: diagramSrc});
 
-    return diagram;
+    return diagramStream;
   }
 }
