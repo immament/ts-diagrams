@@ -26,7 +26,7 @@ describe('ClassDiagramExtractor', () => {
       //skipAddingFilesFromTsConfig: true,
     });
 
-    const {diagrams$, close} = extractor.extract({
+    const {streams$: diagrams$, close} = extractor.extract({
       directory: 'test',
       watchOff: true,
     });
@@ -49,7 +49,10 @@ describe('ClassDiagramExtractor', () => {
       {includeFilesFromDir: directory}
     );
 
-    const {diagrams$, close} = extractor.extract({directory, watchOff: true});
+    const {streams$: diagrams$, close} = extractor.extract({
+      directory,
+      watchOff: true,
+    });
 
     diagramSubs = diagrams$.subscribe(diagram => {
       expect(diagram.elements).toHaveLength(2);
@@ -74,7 +77,9 @@ describe('ClassDiagramExtractor', () => {
         //skipAddingFilesFromTsConfig: true,
       });
 
-      const {diagrams$, close} = extractor.extract({directory: 'test'});
+      const {streams$: diagrams$, close} = extractor.extract({
+        directory: 'test',
+      });
 
       let counter = 0;
       diagramSubs = diagrams$.subscribe(diagram => {
@@ -104,7 +109,9 @@ describe('ClassDiagramExtractor', () => {
         //skipAddingFilesFromTsConfig: true,
       });
 
-      const {diagrams$, close} = extractor.extract({directory: 'test'});
+      const {streams$: diagrams$, close} = extractor.extract({
+        directory: 'test',
+      });
 
       let counter = 0;
       diagramSubs = diagrams$.subscribe(diagram => {
@@ -138,7 +145,9 @@ describe('ClassDiagramExtractor', () => {
         //skipAddingFilesFromTsConfig: true,
       });
 
-      const {diagrams$, close} = extractor.extract({directory: 'test'});
+      const {streams$: diagrams$, close} = extractor.extract({
+        directory: 'test',
+      });
 
       let counter = 0;
       diagramSubs = diagrams$.subscribe(diagram => {

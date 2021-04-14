@@ -47,7 +47,7 @@ export class DiagramPanel {
     const builder = new DiagramBuilderImpl();
     const diagramStream = builder.create({diagramSrc, files});
 
-    const subs = diagramStream.diagrams$.subscribe(diagram => {
+    const subs = diagramStream.streams$.subscribe(diagram => {
       console.log('postMessage', diagram);
       this.panel.webview.postMessage({command: 'diagram', diagram});
     });

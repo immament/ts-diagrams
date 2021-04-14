@@ -19,7 +19,13 @@ export class ClassDiagramBuilder {
   ]);
 
   create({declarations}: {declarations: Node[]}) {
-    const elements = declarations
+    const elements = this.createElements(declarations);
+    const diagram = new ClassDiagram(elements as ClassLikeElement[]);
+    return diagram;
+  }
+
+  private createElements(declarations: Node<ts.Node>[]) {
+    return declarations
       .map(d => {
         const elementBuilder = this.elementBuilderMapper.get(d.getKind());
         if (elementBuilder) return new elementBuilder().create(d);
@@ -27,7 +33,5 @@ export class ClassDiagramBuilder {
         throw new Error(`No builder for ${d.getKindName()}(${d.getKind()})`);
       })
       .filter(e => !!e);
-    const diagram = new ClassDiagram(elements as ClassLikeElement[]);
-    return diagram;
   }
 }

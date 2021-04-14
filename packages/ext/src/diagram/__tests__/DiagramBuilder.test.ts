@@ -22,7 +22,7 @@ describe('DiagramBuilder', () => {
     const builder = new DiagramBuilderImpl();
 
     const diagramStream = builder.create();
-    diagramStream.diagrams$.subscribe(diagram => {
+    diagramStream.streams$.subscribe(diagram => {
       expect(diagram.elements).toHaveLength(3);
       diagramStream.close();
       done();
@@ -44,7 +44,7 @@ describe('DiagramBuilder', () => {
 
     const expectedResults = [{elementsCount: 1}, {elementsCount: 2}];
     let resultCounter = 0;
-    diagramStream.diagrams$.subscribe(diagram => {
+    diagramStream.streams$.subscribe(diagram => {
       expect(diagram.elements).toHaveLength(
         expectedResults[resultCounter].elementsCount
       );
