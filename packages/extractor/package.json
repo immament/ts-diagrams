@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "chokidar": "^3.5.1",
+    "common": "./packages/common",
     "rxjs": "^6.6.6",
     "ts-morph": "^10.0.1"
   }
