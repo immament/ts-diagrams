@@ -1,5 +1,4 @@
-import {DiagramElementDTO} from 'common';
-import {DiagramChangedMessage} from '../DiagramMessage';
+import {DiagramChangedMessage, DiagramElementDTO} from 'common';
 import {VscodeDiagramDataSourceImpl} from '../VscodeDiagramDataSource';
 
 describe('VscodeDiagramDataSourceImpl', () => {

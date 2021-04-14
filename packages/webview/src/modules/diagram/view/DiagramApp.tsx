@@ -1,17 +1,13 @@
-import {Button, PageHeader} from 'antd';
+import {Button, ConfigProvider, PageHeader} from 'antd';
 import React from 'react';
-import serviceContainer from '../../../common/ServiceContainer';
-import {VscodeDiagramDataSourceImpl} from '../../../data/VscodeDiagramDataSource';
 import Joint from '../../joint/Joint';
 import {DiagramController} from '../DiagramController';
 import {ShowDiagramInteractor} from '../interactors/ShowDiagram';
-import {DiagramDataSource} from '../repository/DiagramDataSource';
+import {getDiagramDataSource} from 'common';
 import {DiagramAppViewModel} from './DiagramAppViewModel';
+
 import {DiagramPresenter} from './DiagramPresenter';
 import {BaseComponentProps, withSubscription} from './withSubscription';
-
-// TODO: move to bootstrap
-serviceContainer.set('DiagramDataSource', new VscodeDiagramDataSourceImpl());
 
 export type DiagramAppProps = BaseComponentProps<
   DiagramAppViewModel,
@@ -19,16 +15,17 @@ export type DiagramAppProps = BaseComponentProps<
 >;
 
 export function DiagramAppComponent({viewModel, controller}: DiagramAppProps) {
+  console.log('DiagramAppComponent.render');
   return (
     <>
       <PageHeader
         className="class-diagram-header"
         title="Class diagram"
-        subTitle="todo.."
+        subTitle=".."
         extra={[
-          <Button key="1" onClick={() => controller.onRefreshClick()}>
-            Refresh
-          </Button>,
+          <ConfigProvider csp={{nonce: 'abc'}} key="1">
+            <Button onClick={() => controller.onRefreshClick()}>Refresh</Button>
+          </ConfigProvider>,
         ]}
       ></PageHeader>
       <Joint diagram={viewModel.diagram}></Joint>
@@ -39,12 +36,8 @@ export function DiagramAppComponent({viewModel, controller}: DiagramAppProps) {
 export default withSubscription(DiagramAppComponent, createController());
 
 function createController() {
-  const diagramDataSource = serviceContainer.getOrThrow<DiagramDataSource>(
-    'DiagramDataSource'
-  );
-
   const interactor = new ShowDiagramInteractor(
-    diagramDataSource,
+    getDiagramDataSource(),
     new DiagramPresenter()
   );
 

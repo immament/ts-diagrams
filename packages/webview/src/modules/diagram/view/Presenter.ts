@@ -1,17 +1,18 @@
 import BaseView from '../../../common/BaseView';
 
 export abstract class Presenter<M> {
-  private baseView?: BaseView<M>;
+  protected view?: BaseView<M>;
 
   show(model: M): void {
-    this.baseView?.onViewModelChanged(model);
+    this.view?.onViewModelChanged(model);
   }
 
-  attachView(baseView: BaseView<M>): void {
-    this.baseView = baseView;
+  attachView(view: BaseView<M>): void {
+    // console.log('attachView', view);
+    this.view = view;
   }
 
   detachView(): void {
-    this.baseView = undefined;
+    this.view = undefined;
   }
 }

@@ -8,5 +8,5 @@
     "composite": true
   },
   "exclude": ["node_modules", "**/__tests__"],
-  "references": [{"path": "../common"}]
+  "references": [{"path": "../common/tsconfig.build.json"}]
 }

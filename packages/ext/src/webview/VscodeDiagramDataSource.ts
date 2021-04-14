@@ -1,6 +1,9 @@
-import {ClassDiagramDTO} from 'common';
-import {DiagramDataSource} from '../modules/diagram/repository/DiagramDataSource';
-import {DiagramChangedMessage, DiagramMessage} from './DiagramMessage';
+import {
+  ClassDiagramDTO,
+  DiagramChangedMessage,
+  DiagramDataSource,
+  DiagramMessage,
+} from 'common';
 
 export class VscodeDiagramDataSourceImpl implements DiagramDataSource {
   refresh(): void {

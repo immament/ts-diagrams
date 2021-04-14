@@ -20,6 +20,38 @@
     },
     {
       "type": "npm",
+      "script": "watch",
+      "problemMatcher": [
+        {
+          "base": "$ts-webpack",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": {
+              "regexp": "Compiling.*?|Compilation .*?starting|Compiler starting"
+            },
+            "endsPattern": {
+              "regexp": "[Cc]ompiled (.*?successfully|with .*?error|with .*?warnings)|[Cc]ompilation .*?finished"
+            }
+          }
+        }
+      ],
+      "isBackground": true,
+      "path": "packages/ext/",
+      "label": "npm: watch - packages/ext",
+      "group": "build",
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "compile",
+      "path": "packages/ext/",
+      "label": "npm: compile - packages/ext",
+      "group": "build"
+    },
+    {
+      "type": "npm",
       "script": "test:vscode-watch",
       "problemMatcher": ["$tsc-watch"],
       "isBackground": true,

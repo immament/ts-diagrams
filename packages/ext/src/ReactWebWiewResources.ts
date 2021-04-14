@@ -24,9 +24,9 @@ export class ReactWebWiewResources implements WebWiewResources {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="${styleUri}">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource: https:; script-src ${
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource:; script-src ${
       webview.cspSource
-    } 'nonce-${nonce}'; font-src data:; style-src vscode-resource: c http: https: data:;">
+    } 'nonce-${nonce}'; font-src data:; style-src vscode-resource: 'nonce-abc';">
 
 		<title>Diagram</title>
     <base href="${webview.asWebviewUri(this.webViewBasePath)}/">
@@ -34,12 +34,11 @@ export class ReactWebWiewResources implements WebWiewResources {
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>    
     <div id="root"></div>
+		<script nonce="${nonce}" src="${this.getResourcePath(
+      webview,
+      'webview-init.js'
+    )}"></script>
 		<script nonce="${nonce}" src="${scriptUri}"></script>
-    <script nonce="${nonce}"> 
-    window.onload = function() {
-      console.log('Container.getContainer', ServiceContainer.getContainer());
-    };
-  </script>
 </body>
 </html>`;
   }
@@ -47,26 +46,42 @@ export class ReactWebWiewResources implements WebWiewResources {
   private getResources(webview: vscode.Webview) {
     const {mainScript, mainStyle} = this.getResourcesNames();
 
-    const scriptUri = this.getResourcePath(webview, mainScript);
-    const styleUri = this.getResourcePath(webview, mainStyle);
-
-    return {styleUri, scriptUri};
+    return {
+      scriptUri: webview.asWebviewUri(mainScript),
+      styleUri: webview.asWebviewUri(mainStyle),
+    };
   }
 
-  private getResourcePath(webview: vscode.Webview, resource: string) {
-    const pathOnDisk = vscode.Uri.joinPath(this.webViewBasePath, resource);
+  private getResourcePath(webview: vscode.Webview, ...pathSegments: string[]) {
+    const pathOnDisk = vscode.Uri.joinPath(
+      this.webViewBasePath,
+      ...pathSegments
+    );
     return webview.asWebviewUri(pathOnDisk);
   }
 
   private getResourcesNames() {
+    const webviewContentDirName = 'content';
+
     const manifestPath = vscode.Uri.joinPath(
       this.webViewBasePath,
+      webviewContentDirName,
       'asset-manifest.json'
     );
 
     const manifest = this.readJSON(manifestPath.path);
-    const mainScript: string = manifest.files['main.js'];
-    const mainStyle: string = manifest.files['main.css'];
+
+    const mainScript = vscode.Uri.joinPath(
+      this.webViewBasePath,
+      webviewContentDirName,
+      manifest.files['main.js']
+    );
+    const mainStyle = vscode.Uri.joinPath(
+      this.webViewBasePath,
+      webviewContentDirName,
+      manifest.files['main.css']
+    );
+
     return {mainScript, mainStyle};
   }
 

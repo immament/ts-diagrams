@@ -24,11 +24,12 @@
   },
   "include": [
     "src",
-    "stories"
+    "stories",
+    "../common/src/"
   ],
   "references": [
     {
-      "path": "../common"
+      "path": "../common/tsconfig.build.json"
     }
   ]
 }

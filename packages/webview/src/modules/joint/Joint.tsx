@@ -7,6 +7,7 @@ import {createDiagram, JoindClassDiagram} from './createDiagram';
 import {ClassDiagramDTO} from 'common';
 
 function Joint({diagram}: {diagram?: ClassDiagramDTO}) {
+  console.log('+Joint');
   const el = React.createRef<HTMLDivElement>();
 
   const [jointDiagram, setJointDiagram] = useState<
@@ -15,16 +16,16 @@ function Joint({diagram}: {diagram?: ClassDiagramDTO}) {
 
   useEffect(() => {
     if (el.current && diagram) {
-      if (!jointDiagram) {
-        setJointDiagram(createDiagram(el.current, {diagram}));
-      }
+      console.log('+Joint - useEffect', diagram);
+      jointDiagram?.dispose();
+      setJointDiagram(createDiagram(el.current, {diagram}));
     }
 
     return () => {
-      jointDiagram?.dispose();
+      console.log('+Joint - dispose');
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [el, diagram]);
+  }, [el.current, diagram]);
 
   return (
     <div id="paper-container">

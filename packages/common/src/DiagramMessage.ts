@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import {ClassDiagramDTO} from 'common';
+import {ClassDiagramDTO} from '.';
 
 export interface DiagramMessage {
   command: string;

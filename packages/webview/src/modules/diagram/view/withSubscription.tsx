@@ -24,8 +24,11 @@ export function withSubscription<
     useEffect(() => {
       const presenter = controller.getPresenter();
 
+      console.log('withSubscription, useEffect');
+
       presenter.attachView({
         onViewModelChanged: viewModel => {
+          console.log('onViewModelChanged', viewModel);
           setViewModel(viewModel);
         },
       });

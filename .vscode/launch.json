@@ -15,7 +15,7 @@
       "request": "launch",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}/packages/ext/"],
       "outFiles": ["${workspaceFolder}/packages/ext/dist/**/*.js"],
-      "preLaunchTask": "npm: tsc-watch - packages/ext"
+      "preLaunchTask": "npm: watch - packages/ext"
     },
     {
       "name": "Extension Tests",

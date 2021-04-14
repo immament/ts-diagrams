@@ -1,14 +1,14 @@
 import {DiagramController} from '../DiagramController';
 import {ShowDiagramInteractor} from '../interactors/ShowDiagram';
 import {DiagramPresenter} from '../view/DiagramPresenter';
-import {DiagramDataSourceMock} from './DiagramDataSourceMock';
+import {MockDiagramDataSource} from './DiagramDataSourceMock';
 
 describe('DiagramController', () => {
   let showDiagramInteractor: ShowDiagramInteractor;
-  let dataSource: DiagramDataSourceMock;
+  let dataSource: MockDiagramDataSource;
 
   beforeEach(() => {
-    dataSource = new DiagramDataSourceMock();
+    dataSource = new MockDiagramDataSource();
     const presenter = new DiagramPresenter();
     showDiagramInteractor = new ShowDiagramInteractor(dataSource, presenter);
   });

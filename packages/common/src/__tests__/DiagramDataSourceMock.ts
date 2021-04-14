@@ -1,9 +1,9 @@
-import {ClassDiagramDTO, DiagramDataSource} from 'common';
+import {ClassDiagramDTO, DiagramDataSource} from '..';
 
 export class MockDiagramDataSource implements DiagramDataSource {
   private dataChangedCallback?: (diagram?: ClassDiagramDTO) => void;
 
-  refresh = () => {};
+  refresh = jest.fn();
 
   dataChanged(cb: (diagram?: ClassDiagramDTO) => void): void {
     this.dataChangedCallback = cb;

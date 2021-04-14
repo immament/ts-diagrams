@@ -10,7 +10,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
-    "composite": true
+    "composite": true,
+    "noEmit": true
   },
   "include": ["src"]
 }

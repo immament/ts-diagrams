@@ -1,5 +1,6 @@
 /* istanbul ignore file */
-import {ClassDiagramDTO} from 'common';
+import {ClassDiagramDTO} from './ClassDiagram';
+export const diagramDataSourceKey = 'DiagramDataSource';
 
 export interface DiagramDataSource {
   refresh(): void;

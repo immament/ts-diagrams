@@ -5,15 +5,21 @@
 const path = require('path');
 
 /**@type {import('webpack').Configuration}*/
-const config = {
-  target: 'node', // vscode extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/
-  mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
+const extensionConfig = {
+  target: 'node',
+  mode: 'none',
 
-  entry: './src/extension.ts', // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
+  // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
+  entry: {
+    extension: './src/extension.ts',
+    //webview: './src/webview/index.ts',
+  },
   output: {
     // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, 'dist'),
-    filename: 'extension.js',
+    filename: pathData => {
+      return pathData.chunk.name === 'webview' ? 'web/webview.js' : '[name].js';
+    },
     libraryTarget: 'commonjs2',
   },
   devtool: 'nosources-source-map',
@@ -21,10 +27,11 @@ const config = {
     vscode: 'commonjs vscode', // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
   },
   resolve: {
-    // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
+    // -> https://github.com/TypeStrong/ts-loader
     extensions: ['.ts', '.js'],
     alias: {
       common: path.resolve(__dirname, '../common/src'),
+      '@common': path.resolve(__dirname, '../extractor/src/common'),
     },
   },
   module: {
@@ -42,5 +49,46 @@ const config = {
       },
     ],
   },
+
+  infrastructureLogging: {
+    level: 'log',
+  },
 };
-module.exports = config;
+
+/**@type {import('webpack').Configuration}*/
+const webviewConfig = {
+  target: 'es5',
+  mode: 'none',
+
+  // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
+  entry: {
+    webview: './src/webview/index.ts',
+  },
+  output: {
+    // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'web/webview-init.js',
+  },
+  devtool: 'nosources-source-map',
+  resolve: {
+    // -> https://github.com/TypeStrong/ts-loader
+    extensions: ['.ts', '.js'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            projectReferences: true,
+            transpileOnly: false,
+            configFile: 'tsconfig.build.json',
+          },
+        },
+      },
+    ],
+  },
+};
+
+module.exports = [extensionConfig, webviewConfig];

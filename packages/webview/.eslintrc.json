@@ -1,6 +1,14 @@
 {
-  "extends": ["react-app", "react-app/jest", "../../.eslintrc.json"]
+  "extends": ["react-app", "react-app/jest", "../../.eslintrc.json"],
   // "rules": {
   //   "node/no-unpublished-import": "off"
   // }
+  "rules": {
+    "node/no-extraneous-import": [
+      "error",
+      {
+        "allowModules": ["common"]
+      }
+    ]
+  }
 }

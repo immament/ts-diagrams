@@ -1,4 +1,4 @@
-import {DiagramDataSource} from '../repository/DiagramDataSource';
+import {DiagramDataSource} from 'common';
 import {DiagramPresenter} from '../view/DiagramPresenter';
 
 export class ShowDiagramInteractor {

@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "common": "yarn workspace common",
     "ext": "yarn workspace ext",
     "ext:watch": "yarn workspace ext watch",
     "ext:test-compile": "yarn workspace ext test-compile",

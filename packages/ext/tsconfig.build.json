@@ -17,5 +17,8 @@
   },
   "include": ["src"],
   "exclude": ["node_modules", ".vscode-test", "**/__tests__", "src/test"],
-  "references": [{"path": "../extractor/tsconfig.build.json"}]
+  "references": [
+    {"path": "../extractor/tsconfig.build.json"},
+    {"path": "../common/tsconfig.build.json"}
+  ]
 }
