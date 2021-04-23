@@ -24,9 +24,10 @@ export class ReactWebWiewResources implements WebWiewResources {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="${styleUri}">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource:; script-src ${
-      webview.cspSource
-    } 'nonce-${nonce}'; font-src data:; style-src vscode-resource: 'nonce-abc';">
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'none'; img-src vscode-resource:; 
+      script-src ${webview.cspSource} 'nonce-${nonce}';
+      font-src data:; style-src vscode-resource: 'nonce-abc';">
 
 		<title>Diagram</title>
     <base href="${webview.asWebviewUri(this.webViewBasePath)}/">
@@ -34,10 +35,9 @@ export class ReactWebWiewResources implements WebWiewResources {
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>    
     <div id="root"></div>
-		<script nonce="${nonce}" src="${this.getResourcePath(
-      webview,
-      'webview-init.js'
-    )}"></script>
+		<script nonce="${nonce}" 
+      src="${this.getResourcePath(webview, 'webview-init.js')}">
+    </script>
 		<script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
 </html>`;

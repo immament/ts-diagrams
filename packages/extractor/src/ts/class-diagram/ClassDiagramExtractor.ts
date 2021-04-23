@@ -1,14 +1,18 @@
 import {ClassDiagramDTO} from 'common';
 import {Project, ProjectOptions, SourceFile} from 'ts-morph';
 import {ExtractorProject, ResultStream} from '../ExtractorProject';
-import {ClassDiagramBuilder} from './ClassDiagramBuilder';
-import {Searcher} from './searcher';
+import {ClassDiagramBuilder} from './builders/ClassDiagramBuilder';
+import {ClassDiagramElementsSearcher} from './ClassDiagramElementsSearcher';
+import {ReferenceSearcher} from './ReferenceSearcher';
 
 export type ExtractorOptions = ProjectOptions;
 
+export type DiagramStream = ResultStream<ClassDiagramDTO>;
+
 export class ClassDiagramExtractor {
-  private searcher = new Searcher();
+  private searcher = new ClassDiagramElementsSearcher();
   private builder = new ClassDiagramBuilder();
+  private referenceSercher = new ReferenceSearcher();
 
   constructor(
     private opt: ExtractorOptions,
@@ -24,7 +28,7 @@ export class ClassDiagramExtractor {
   }: {
     directory?: string;
     watchOff?: boolean;
-  }): ResultStream<ClassDiagramDTO> {
+  }): DiagramStream {
     const extractor = new ExtractorProject(this.opt, this.diagramOpt);
     return extractor.extract({
       srcPath: directory,
@@ -41,7 +45,9 @@ export class ClassDiagramExtractor {
 
       const declarations = searchedFiles.flatMap(sf => this.searchInFile(sf));
 
-      return this.builder.create({declarations}).toDTO();
+      const references = this.referenceSercher.search(declarations);
+
+      return this.builder.create({declarations, references}).toDTO();
     };
   }
 

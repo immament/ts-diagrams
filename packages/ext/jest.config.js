@@ -2,6 +2,7 @@
 module.exports = {
   preset: 'ts-jest',
   testMatch: ['<rootDir>/src/**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)'],
-  testEnvironment: 'node',
-  moduleDirectories: ['node_modules', '../extractor'],
+  testEnvironment: 'jsdom',
+  moduleDirectories: ['node_modules'],
+  //setupFiles: ['<rootDir>/src/test/unit/setupTests.ts'],
 };

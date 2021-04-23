@@ -13,9 +13,7 @@ export class DiagramBuilderImpl implements DiagramBuilder {
     files?: string;
   } = {}) {
     const diagramExtractor = new ClassDiagramExtractor(
-      {
-        skipLoadingLibFiles: true,
-      },
+      {skipLoadingLibFiles: true},
       {includeFilesFromDir: diagramSrc, filesPattern: files}
     );
 

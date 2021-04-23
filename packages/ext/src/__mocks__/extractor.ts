@@ -7,7 +7,7 @@ export const ClassDiagramExtractor = jest.fn().mockImplementation(() => ({
   extract: () => {
     currentSubject = new Subject<ClassDiagramDTO>();
     return {
-      diagrams$: currentSubject.asObservable(),
+      streams$: currentSubject.asObservable(),
       close: () => currentSubject.unsubscribe(),
     };
   },

@@ -39,6 +39,7 @@ export class TsProjectWatcher implements IDisposable {
 
   constructor(options: TsProjectWatcherOptions) {
     this._project = new Project(options.projectOptions);
+    //this._project.getTypeChecker();
     this.projectChangesSubject = new BehaviorSubject({
       project: this._project,
       eventType: 'init' as EventType,
@@ -95,6 +96,7 @@ export class TsProjectWatcher implements IDisposable {
         break;
 
       default:
+        /* istanbul ignore next */
         throw Error('Not implemented event type:' + e.type);
     }
 

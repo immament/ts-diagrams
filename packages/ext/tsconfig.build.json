@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
@@ -18,7 +17,7 @@
   "include": ["src"],
   "exclude": ["node_modules", ".vscode-test", "**/__tests__", "src/test"],
   "references": [
-    {"path": "../extractor/tsconfig.build.json"},
-    {"path": "../common/tsconfig.build.json"}
+    {"path": "../common/tsconfig.build.json"},
+    {"path": "../extractor/tsconfig.build.json"}
   ]
 }

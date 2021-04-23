@@ -1,5 +1,3 @@
-//@ts-check
-
 'use strict';
 
 const path = require('path');
@@ -9,13 +7,10 @@ const extensionConfig = {
   target: 'node',
   mode: 'none',
 
-  // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
   entry: {
     extension: './src/extension.ts',
-    //webview: './src/webview/index.ts',
   },
   output: {
-    // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, 'dist'),
     filename: pathData => {
       return pathData.chunk.name === 'webview' ? 'web/webview.js' : '[name].js';
@@ -30,24 +25,11 @@ const extensionConfig = {
     // -> https://github.com/TypeStrong/ts-loader
     extensions: ['.ts', '.js'],
     alias: {
-      common: path.resolve(__dirname, '../common/src'),
       '@common': path.resolve(__dirname, '../extractor/src/common'),
     },
   },
   module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            projectReferences: true,
-            transpileOnly: false,
-            configFile: 'tsconfig.build.json',
-          },
-        },
-      },
-    ],
+    rules: [tsLoaderModuleRule()],
   },
 
   infrastructureLogging: {
@@ -60,14 +42,12 @@ const webviewConfig = {
   target: 'es5',
   mode: 'none',
 
-  // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
   entry: {
     webview: './src/webview/index.ts',
   },
   output: {
-    // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'web/webview-init.js',
+    path: path.resolve(__dirname, 'dist', 'web'),
+    filename: 'webview-init.js',
   },
   devtool: 'nosources-source-map',
   resolve: {
@@ -75,20 +55,24 @@ const webviewConfig = {
     extensions: ['.ts', '.js'],
   },
   module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            projectReferences: true,
-            transpileOnly: false,
-            configFile: 'tsconfig.build.json',
-          },
-        },
-      },
-    ],
+    rules: [tsLoaderModuleRule()],
   },
 };
 
 module.exports = [extensionConfig, webviewConfig];
+
+function tsLoaderModuleRule() {
+  /**@type {import('webpack').RuleSetRule}*/
+  const rule = {
+    test: /\.ts$/,
+    use: {
+      loader: 'ts-loader',
+      options: {
+        projectReferences: true,
+        transpileOnly: false,
+        configFile: 'tsconfig.build.json',
+      },
+    },
+  };
+  return rule;
+}

@@ -3,8 +3,28 @@
   "configurations": [
     {
       "type": "node",
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "args": ["ext", "test", "--runInBand"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "protocol": "inspector",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true
+    },
+    {
+      "type": "node",
       "request": "launch",
       "name": "test extractor",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["ext:test"],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test ext",
       "runtimeExecutable": "yarn",
       "runtimeArgs": ["extractor:test", "--detectOpenHandles"],
       "port": 9229

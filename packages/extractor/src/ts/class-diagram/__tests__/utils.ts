@@ -1,13 +1,13 @@
 import {ProjectOptions, SourceFile} from 'ts-morph';
-import {initProject, initProjectWithFiles} from '../../initProject';
-import {ClassDiagramBuilder} from '../ClassDiagramBuilder';
-import {Searcher} from '../searcher';
+import {initProject, initProjectWithFiles} from '../../__tests__/initProject';
+import {ClassDiagramBuilder} from '../builders/ClassDiagramBuilder';
+import {ClassDiagramElementsSearcher} from '../ClassDiagramElementsSearcher';
 import {ClassDiagramTestWrapper} from './ClassDiagramTestWrapper';
 
 export function createDiagram(fileContent: string) {
   const builder = new ClassDiagramBuilder();
   return new ClassDiagramTestWrapper(
-    builder.create({declarations: initElements(fileContent)})
+    builder.create({declarations: initElements(fileContent), references: []})
   );
 }
 
@@ -39,7 +39,9 @@ export function initElementsWithFiles(files: [string, string][]) {
 }
 
 export function search(sourceFile: SourceFile) {
-  const searcher = new Searcher({checkOnlyExportKeyword: true});
+  const searcher = new ClassDiagramElementsSearcher({
+    checkOnlyExportKeyword: true,
+  });
   return searcher.search(sourceFile);
 }
 

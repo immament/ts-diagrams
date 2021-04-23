@@ -8,6 +8,7 @@
   "scripts": {
     "common": "yarn workspace common",
     "ext": "yarn workspace ext",
+    "ext:test": "yarn ext test",
     "ext:watch": "yarn workspace ext watch",
     "ext:test-compile": "yarn workspace ext test-compile",
     "ext:test-watch": "yarn workspace ext test-watch",

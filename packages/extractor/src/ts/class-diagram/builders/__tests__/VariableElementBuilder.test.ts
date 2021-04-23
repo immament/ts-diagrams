@@ -1,4 +1,4 @@
-import {createDiagram, createDiagramFromFiles} from './utils';
+import {createDiagram, createDiagramFromFiles} from '../../__tests__/utils';
 
 describe('Variable Element Builder', () => {
   test('should fount var, const, let', () => {

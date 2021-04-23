@@ -2,7 +2,7 @@ import {
   createDiagram,
   createDiagramFromFiles,
   createDiagramWithLoadLibs,
-} from './utils';
+} from '../../__tests__/utils';
 
 describe('ClassDiagram Classes', () => {
   test('should create diagram with class element with correct name', () => {

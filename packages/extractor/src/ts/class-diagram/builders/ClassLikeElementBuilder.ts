@@ -9,7 +9,7 @@ import {
   PropertyDeclaration,
   PropertySignature,
 } from 'ts-morph';
-import {getTypeText} from '../utils/ts-utils';
+import {getTypeText} from '../../utils/ts-utils';
 
 export class ClassLikeElementBuilder {
   constructor(

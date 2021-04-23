@@ -2,7 +2,7 @@ import {
   createDiagram,
   createDiagramFromFiles,
   createDiagramWithLoadLibs,
-} from './utils';
+} from '../../__tests__/utils';
 
 describe('ClassDiagram Interfaces', () => {
   test('should create diagram with interface element with correct name', () => {

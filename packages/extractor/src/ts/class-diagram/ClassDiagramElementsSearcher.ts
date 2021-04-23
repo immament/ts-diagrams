@@ -1,6 +1,6 @@
 import {ExportGetableNode, Node, SourceFile} from 'ts-morph';
 
-export class Searcher {
+export class ClassDiagramElementsSearcher {
   constructor(private opt: {checkOnlyExportKeyword?: boolean} = {}) {}
 
   search(sf: SourceFile) {

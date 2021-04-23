@@ -2,7 +2,7 @@ import {
   createDiagram,
   createDiagramFromFiles,
   createDiagramWithLoadLibs,
-} from './utils';
+} from '../../__tests__/utils';
 
 describe('Function Element Builder', () => {
   test('should create diagram with function element with correct name', () => {

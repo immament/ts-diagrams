@@ -1,7 +1,8 @@
-import {DiagramElementDTO} from 'common';
+import {DiagramElementDTO, LinkElementDTO} from 'common';
 import {
   ClassDiagram,
   ClassElement,
+  DiagramLink,
   FunctionElement,
   InterfaceElement,
   VariableElement,
@@ -127,12 +128,15 @@ describe('ClassDiagram toDTO', () => {
   });
 
   test('should map diagram with elements', () => {
-    const diagram = new ClassDiagram([
-      new ClassElement('C1'),
-      new InterfaceElement('I1'),
-      new FunctionElement('f1', 'string'),
-      new VariableElement('v1', 'string'),
-    ]);
+    const diagram = new ClassDiagram(
+      [
+        new ClassElement('C1'),
+        new InterfaceElement('I1'),
+        new FunctionElement('f1', 'string'),
+        new VariableElement('v1', 'string'),
+      ],
+      []
+    );
 
     const dto = diagram.toDTO();
     expect(dto).toMatchObject({
@@ -144,5 +148,18 @@ describe('ClassDiagram toDTO', () => {
       ],
       links: [],
     });
+  });
+
+  test('should map link', () => {
+    const element = new DiagramLink('1', '2', 'extends');
+
+    const expected: Partial<LinkElementDTO> = {
+      fromId: '1',
+      toId: '2',
+      kind: 'uml.Generalization',
+    };
+
+    const dto = element.toDTO();
+    expect(dto).toMatchObject(expected);
   });
 });

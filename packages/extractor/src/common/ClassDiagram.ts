@@ -1,37 +1,48 @@
-import {ClassDiagramDTO, DiagramElementDTO} from 'common';
+import {ClassDiagramDTO, DiagramElementDTO, LinkElementDTO} from 'common';
 
 export interface toDTO<T> {
   toDTO(): T;
 }
 
 export class ClassDiagram implements toDTO<ClassDiagramDTO> {
-  constructor(private elements: DiagramElement[]) {}
+  constructor(
+    private elements: DiagramElement[],
+    private links: DiagramLink[]
+  ) {}
 
   getElements() {
     return [...this.elements];
   }
 
+  getLinks(): DiagramLink[] {
+    return [...this.links];
+  }
+
   toDTO(): ClassDiagramDTO {
+    const elementsDTO = this.elements.map(el => ({el, dto: el.toDTO()}));
+
     return {
-      elements: this.getElements().map(e => e.toDTO()),
-      links: [],
+      elements: elementsDTO.map(item => item.dto),
+      links: this.links.map(l => l.toDTO()),
     };
   }
 }
 
 export interface DiagramElement extends toDTO<DiagramElementDTO> {
-  kind: string;
-  name: string;
+  readonly id: string;
+  readonly kind: string;
+  readonly name: string;
 }
 
 export abstract class ClassLikeElement implements DiagramElement {
-  kind: string;
+  readonly id: string;
   constructor(
-    public name: string,
+    public readonly kind: string,
+    public readonly name: string,
     protected methods: Method[] = [],
     protected properties: Property[] = []
   ) {
-    this.kind = 'ClassLikeElement';
+    this.id = nextId();
   }
 
   getProperties() {
@@ -43,7 +54,7 @@ export abstract class ClassLikeElement implements DiagramElement {
 
   toDTO(): DiagramElementDTO {
     return {
-      id: nextId(),
+      id: this.id,
       kind: 'uml.' + this.kind,
       name: this.name,
       methods: getIfHasElements(this.getMethods()),
@@ -53,15 +64,13 @@ export abstract class ClassLikeElement implements DiagramElement {
 }
 
 export class ClassElement extends ClassLikeElement {
-  kind: string;
   constructor(
     name: string,
     methods: Method[] = [],
     properties: Property[] = [],
     protected accessors: Accessor[] = []
   ) {
-    super(name, methods, properties);
-    this.kind = 'Class';
+    super('Class', name, methods, properties);
   }
 
   getAccessors() {
@@ -82,8 +91,7 @@ export class InterfaceElement extends ClassLikeElement {
     methods: Method[] = [],
     properties: Property[] = []
   ) {
-    super(name, methods, properties);
-    this.kind = 'Interface';
+    super('Interface', name, methods, properties);
   }
 
   toDTO(): DiagramElementDTO {
@@ -116,17 +124,20 @@ export interface Accessor {
 }
 
 export class FunctionElement implements DiagramElement {
-  kind = 'Function';
+  readonly id: string;
+  readonly kind = 'Function';
 
   constructor(
     public name: string,
     public returnType: string,
     public parameters: Parameter[] = []
-  ) {}
+  ) {
+    this.id = nextId();
+  }
 
   toDTO(): DiagramElementDTO {
     return {
-      id: nextId(),
+      id: this.id,
       kind: 'uml.' + this.kind,
       name: this.name,
       type: this.returnType,
@@ -136,13 +147,16 @@ export class FunctionElement implements DiagramElement {
 }
 
 export class VariableElement implements DiagramElement {
-  kind = 'Variable';
+  readonly kind = 'Variable';
+  readonly id: string;
 
-  constructor(public name: string, public type: string) {}
+  constructor(public name: string, public type: string) {
+    this.id = nextId();
+  }
 
   toDTO(): DiagramElementDTO {
     return {
-      id: nextId(),
+      id: this.id,
       kind: 'uml.' + this.kind,
       name: this.name,
       type: this.type,
@@ -160,4 +174,32 @@ let lastId = 0;
 
 function nextId() {
   return (++lastId).toString();
+}
+
+function mapLinkType(type: string) {
+  switch (type) {
+    case 'extends':
+      return 'uml.Generalization';
+    case 'implements':
+      return 'uml.Generalization';
+
+    default:
+      return 'unknown';
+  }
+}
+
+export class DiagramLink implements toDTO<LinkElementDTO> {
+  constructor(
+    public fromId: string,
+    public toId: string,
+    public type: string
+  ) {}
+
+  toDTO(): LinkElementDTO {
+    return {
+      fromId: this.fromId,
+      toId: this.toId,
+      kind: mapLinkType(this.type),
+    };
+  }
 }

@@ -36,7 +36,7 @@ function check(type: Type<ts.Type>, method: keyof Type<ts.Type>) {
   return '';
 }
 
-export function print(value: unknown) {
+export function toPrint(value: unknown) {
   if (typeof value === 'object') {
     return {...value, _context: undefined};
   } else {

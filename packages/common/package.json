@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "clean": "rm tsconfig.build.tsbuildinfo -f && rm dist -r -f && rm coverage -r -f",
+    "test": "jest",
     "test:watch": "jest --watch"
   },
   "license": "MIT",

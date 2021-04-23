@@ -5,7 +5,7 @@ import {
   GetAccessorDeclaration,
   ModifierableNode,
 } from 'ts-morph';
-import {getTypeText} from '../utils/ts-utils';
+import {getTypeText} from '../../utils/ts-utils';
 import {ClassLikeElementBuilder} from './ClassLikeElementBuilder';
 import {ElementBuilder} from './ElementBuilder';
 

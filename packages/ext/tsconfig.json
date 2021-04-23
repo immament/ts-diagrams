@@ -1,6 +1,6 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "commonjs",
     "target": "es6",
     "outDir": "build",
@@ -10,8 +10,16 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "common": ["../common/src"],
+      "extractor": ["../extractor/src"]
+    }
   },
   "include": ["src"],
-  "exclude": ["node_modules", ".vscode-test"]
+  "exclude": ["node_modules", ".vscode-test"],
+  "references": [
+    {"path": "../common/tsconfig.build.json"},
+    {"path": "../extractor/tsconfig.build.json"}
+  ]
 }

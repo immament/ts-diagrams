@@ -8,10 +8,10 @@
   ],
   "license": "MIT",
   "scripts": {
+    "build": "tsc -b tsconfig.build.json",
+    "clean": "rm tsconfig.build.tsbuildinfo -f && rm dist -r -f && rm coverage -r -f",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "compile": "tsc -b tsconfig.build.json",
-    "build": "yarn compile"
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",

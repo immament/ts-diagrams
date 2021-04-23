@@ -18,7 +18,7 @@ describe('DiagramBuilder', () => {
   //   });
   // });
 
-  it('should create diagram once', done => {
+  test('should create diagram once', done => {
     const builder = new DiagramBuilderImpl();
 
     const diagramStream = builder.create();

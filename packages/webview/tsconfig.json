@@ -1,12 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,11 +17,7 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": [
-    "src",
-    "stories",
-    "../common/src/"
-  ],
+  "include": ["src", "stories", "../common/src/"],
   "references": [
     {
       "path": "../common/tsconfig.build.json"

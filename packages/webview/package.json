@@ -4,8 +4,9 @@
   "main": "",
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
     "build": "node ./scripts/build-non-split.js ",
+    "clean": "rm coverage -r -f",
+    "start": "react-scripts start",
     "test": "react-scripts test --watchAll=false",
     "test:watch": "react-scripts test",
     "fix": "eslint . --fix",
